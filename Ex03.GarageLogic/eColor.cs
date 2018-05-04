@@ -6,7 +6,11 @@ using System.Threading.Tasks;
 
 namespace Ex03.GarageLogic
 {
-    public class Class1
+    public enum eColor
     {
+        Blue,
+        White,
+        Black,
+        Gray
     }
 }
