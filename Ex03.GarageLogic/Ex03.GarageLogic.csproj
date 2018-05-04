@@ -49,6 +49,9 @@
     <Compile Include="Engine.cs" />
     <Compile Include="eTypeOfEngine.cs" />
     <Compile Include="eTypeOfFuel.cs" />
+    <Compile Include="eVechileStatus.cs" />
+    <Compile Include="Garage.cs" />
+    <Compile Include="GarageVechile.cs" />
     <Compile Include="GasolineContainer.cs" />
     <Compile Include="MotorCycle.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
