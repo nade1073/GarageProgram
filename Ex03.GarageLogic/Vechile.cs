@@ -26,10 +26,19 @@ namespace Ex03.GarageLogic
             }
         }
 
+        public void WheelInflating(float? i_AirPressureToAdd)
+        {
+            foreach(Wheel m_CurrentWheel in m_Wheels)
+            {
+                m_CurrentWheel.WheelInflating(i_AirPressureToAdd);
+            }
+        }
+
         protected void initializeElectricEngine(float i_MaxCapacityOfContainer)
         {
             EngineOfVechile = new Engine(new ElectricContainer(), i_MaxCapacityOfContainer);
         }
+
         protected void initializeGasolineEngine(eTypeOfFuel i_TypeOfFuel,float i_MaxCapacityOfContainer)
         {
             EngineOfVechile = new Engine(new GasolineContainer(i_TypeOfFuel), i_MaxCapacityOfContainer);
@@ -58,6 +67,21 @@ namespace Ex03.GarageLogic
             set
             {
                 m_LicenseNumber = value;
+            }
+        }
+
+        public float MaxAirPressureOfWheels
+        {
+            get
+            {
+                return Wheels[0].MaxAirPressure;
+            }
+        }
+        public float? CurrentAirPressureOfWheels
+        {
+            get
+            {
+                return Wheels[0].CurrentAirPressure;
             }
         }
 

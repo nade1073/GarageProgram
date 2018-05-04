@@ -23,7 +23,7 @@
             }
         }
 
-        public float CurrentAirPressure
+        public float? CurrentAirPressure
         {
             get
             {

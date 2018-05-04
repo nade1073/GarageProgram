@@ -55,9 +55,7 @@ namespace Ex03.GarageLogic
                 {
                     vechilesLicenceNumbers.Add(garageVechile.ownerVechile.LicenseNumber);
                 }
-
             }
-
             return vechilesLicenceNumbers;
         }
         public void changeStatusOfVechile(string i_LicenceNumber, eVechileStatus i_NewStatus)
@@ -71,15 +69,15 @@ namespace Ex03.GarageLogic
         }
         public void inflateAirInTheWheels(Vechile i_VechileToAddPressure)
         {
-            float currentAirPressure, maxAirPressure, missingAirPressure;
+            float? currentAirPressure, maxAirPressure, missingAirPressure;
             GarageVechile garageVechileInList = new GarageVechile();
             garageVechileInList = getVechileByLicenceNumber(i_VechileToAddPressure.LicenseNumber);
             if (garageVechileInList != null)
             {
-                currentAirPressure = i_VechileToAddPressure.Wheels.CurrentAirPressure;
-                maxAirPressure = i_VechileToAddPressure.Wheels.MaxAirPressure;
+                currentAirPressure = i_VechileToAddPressure.CurrentAirPressureOfWheels;
+                maxAirPressure = i_VechileToAddPressure.MaxAirPressureOfWheels;
                 missingAirPressure = maxAirPressure - currentAirPressure;
-                i_VechileToAddPressure.Wheels.WheelInflating(missingAirPressure);
+                i_VechileToAddPressure.WheelInflating(missingAirPressure);
             }
 
 

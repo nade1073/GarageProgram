@@ -51,8 +51,5 @@
                 return m_CurrentVechileStatus;
             }
         }
-
-
-
     }
 }
