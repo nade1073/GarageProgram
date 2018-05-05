@@ -9,12 +9,11 @@ namespace Ex03.ConsoleUI
         {
 
             Console.WriteLine("Please Choose what you want to do: \nAdd a new vechile to the garage write '1'\nShow all the licence numbers in the garage write '2'");
-            Console.WriteLine("Add a new vechile to the garage write '3'\nShow all the licence numbers in the garage write '4'");
-            Console.WriteLine("Change the status of the vechile write '5'\n Inflate air in the wheels to the maximum write '6'");
-            Console.WriteLine("Add fuel to Gasoline Engine Car write '7'\nCharge Electric car write '8'");
-            Console.WriteLine("Show all the car details '9'\n");
+            Console.WriteLine("Change the status of the vechile write '3'\n Inflate air in the wheels to the maximum write '4'");
+            Console.WriteLine("Add fuel to Gasoline Engine Car write '5'\nCharge Electric car write '6");
+            Console.WriteLine("Show all the car details '7'\n");
             string chooseMenu = Console.ReadLine();
-            switch (chooseMenu)
+            switch (chooseMenu) // need to add Parse to all inputs
             {
                 case "1":
                     addNewCarToGarage();
@@ -23,32 +22,19 @@ namespace Ex03.ConsoleUI
                     showAllLicenceNumbers();
                     break;
                 case "3":
-
-
+                    ChangeStatusOfVechileInGarage(); //need to complete function
                     break;
                 case "4":
-
-
+                    InflateAirInTheWheelsToMaximum();
                     break;
                 case "5":
-
-
+                    addGasolineFuelToCar();
                     break;
                 case "6":
-
-
+                    chargeElectricCar();
                     break;
                 case "7":
-
-
-                    break;
-                case "8":
-
-
-                    break;
-                case "9":
-
-
+                    printAllCarDetails();
                     break;
             }
 
@@ -152,6 +138,53 @@ namespace Ex03.ConsoleUI
             {
                 Console.WriteLine("{0}\n",item);
             }
+        }
+        private static void ChangeStatusOfVechileInGarage()
+        {
+            string licenceNumber,outputStatus;
+            eVechileStatus statusToFilterVechiles;
+            Console.WriteLine("Enter the licence number of the vechile");
+            licenceNumber = Console.ReadLine();
+            Console.WriteLine("Enter the status");
+            outputStatus = Console.ReadLine();
+
+            Garage.ChangeStatusOfVechile(licenceNumber, statusToFilterVechiles);
+        }
+        private static void InflateAirInTheWheelsToMaximum()
+        {
+            string licenceNumber, outputStatus;
+            eVechileStatus statusToFilterVechiles;
+            Console.WriteLine("Enter the licence number of the vechile");
+            licenceNumber = Console.ReadLine();
+            Garage.InflateAirInTheWheels(licenceNumber, statusToFilterVechiles);
+        }
+        private static void addGasolineFuelToCar()
+        {
+            eTypeOfFuel typeOfFuelToAdd;
+            string amountOfFuelToAdd, licenceNumber;
+            Console.WriteLine("Enter the licence number of the vechile");
+            licenceNumber = Console.ReadLine();
+            Console.WriteLine("Please Enter the type of fuel to add\n");
+            typeOfFuelToAdd = Console.ReadLine();
+            Console.WriteLine("Please Enter the amount of fuel to add\n");
+            amountOfFuelToAdd = (Console.ReadLine());
+            Garage.AddFuelToGasolineEngine(licenceNumber, typeOfFuelToAdd, amountOfFuelToAdd);
+        }
+        private static void chargeElectricCar()
+        {
+            string amountOfBattery, licenceNumber;
+            Console.WriteLine("Enter the licence number of the vechile");
+            licenceNumber = Console.ReadLine();
+            Console.WriteLine("Please Enter the amount of battery to add\n");
+            amountOfBattery = Console.ReadLine();
+            Garage.ChargeElectricEngine(licenceNumber, amountOfBattery);
+        }
+        private static void printAllCarDetails()
+        {
+            string  licenceNumber;
+            Console.WriteLine("Enter the licence number of the vechile");
+            licenceNumber = Console.ReadLine();
+            Garage.GetCarDetails(licenceNumber);
         }
     }
 }
