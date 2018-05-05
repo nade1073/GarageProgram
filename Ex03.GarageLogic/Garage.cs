@@ -1,46 +1,50 @@
-﻿
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+
 namespace Ex03.GarageLogic
 {
     public class Garage
     {
-        private List<GarageVechile> m_GarageVechiles;
+        private readonly List<GarageVechile> m_GarageVechiles;
+
+        public Garage()
+        {
+            m_GarageVechiles = new List<GarageVechile>();
+        }
 
         private GarageVechile getVechileByLicenceNumber(string i_LicenceNumber)
         {
             GarageVechile garageVechileToReturn = null;
-            foreach (GarageVechile garageVechile in m_GarageVechiles)
+            foreach (GarageVechile currentVechile in m_GarageVechiles)
             {
-                if (garageVechile.ownerVechile.LicenseNumber == i_LicenceNumber)
+                if (currentVechile.OwnerVechile.LicenseNumber == i_LicenceNumber)
                 {
-                    garageVechileToReturn = garageVechile;
+                    garageVechileToReturn = currentVechile;
                 }
             }
             return garageVechileToReturn;
         }
-        public string addVechileToGarage(Vechile i_VechileToAdd, string i_OwnerName, string i_PhoneOfOwner)
+
+        public bool AddVechileToGarage(Vechile i_VechileToAdd, string i_OwnerName, string i_PhoneOfOwner)
         {
-            string message = null;
-            GarageVechile newGarageVechileToAdd = new GarageVechile();
-            GarageVechile garageVechileInList = new GarageVechile();
-            garageVechileInList = getVechileByLicenceNumber(i_VechileToAdd.LicenseNumber);
-            if (garageVechileInList != null)
+            bool isAddedToTheGarage = false;
+            GarageVechile vechileToTheGarage = new GarageVechile();
+            vechileToTheGarage = getVechileByLicenceNumber(i_VechileToAdd.LicenseNumber);
+            if (vechileToTheGarage != null)
             {
-                message = "The Vechile is already in the garage";
-                garageVechileInList.currentVechileStatus = eVechileStatus.Repair;
+                vechileToTheGarage.CurrentVechileStatus = eVechileStatus.Repair;
             }
             else
             {
-                newGarageVechileToAdd.ownerVechile = i_VechileToAdd;
-                newGarageVechileToAdd.ownerName = i_OwnerName;
-                newGarageVechileToAdd.phoneOfOwner = i_PhoneOfOwner;
-                newGarageVechileToAdd.currentVechileStatus = eVechileStatus.Repair;
-                m_GarageVechiles.Add(newGarageVechileToAdd);
-                message = "The Vechile added to the garage";
+                vechileToTheGarage.OwnerVechile = i_VechileToAdd;
+                vechileToTheGarage.OwnerName = i_OwnerName;
+                vechileToTheGarage.PhoneOfOwner = i_PhoneOfOwner;
+                vechileToTheGarage.CurrentVechileStatus = eVechileStatus.Repair;
+                m_GarageVechiles.Add(vechileToTheGarage);
+                isAddedToTheGarage = true;
             }
-
-            return message;
+            return isAddedToTheGarage;         
         }
+
         public List<string> showVechilesInGarage(eVechileStatus? i_statusToFilterVechiles)
         {
             List<string> vechilesLicenceNumbers = new List<string>();
