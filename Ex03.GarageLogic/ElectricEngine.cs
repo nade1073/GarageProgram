@@ -6,9 +6,10 @@ namespace Ex03.GarageLogic
     {
         private float m_Battery;
 
-        public ElectricEngine(float i_MaxCapacityOfContainer) : base(i_MaxCapacityOfContainer)
+        public ElectricEngine(float i_MaxCapacityOfContainer=0) : base(i_MaxCapacityOfContainer)
         {
         }
+
 
         public float Battery
         {
