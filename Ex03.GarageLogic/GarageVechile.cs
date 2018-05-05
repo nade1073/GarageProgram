@@ -1,4 +1,7 @@
-﻿namespace Ex03.GarageLogic
+﻿using System;
+using System.Text;
+
+namespace Ex03.GarageLogic
 {
     public class GarageVechile
     {
@@ -58,5 +61,13 @@
                 m_CurrentVechileStatus = value;
             }
         }
+        public StringBuilder ToString()
+        {
+            StringBuilder stringToReturn = new StringBuilder();
+
+            stringToReturn.AppendLine(String.Format("The owner Name is {0}, the Phone of the owner is {1} , the status of the vechile is {2}, The Car Details are: {3}", this.OwnerName, this.PhoneOfOwner, this.CurrentVechileStatus, this.OwnerVechile.ToString()));
+            return stringToReturn;
+        }
+
     }
 }
