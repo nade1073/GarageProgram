@@ -3,13 +3,14 @@
     public class Wheel
     {
         private string m_ManufacturerName;
-        private float? m_CurrentAirPressure;
+        private float m_CurrentAirPressure;
         private float m_MaxAirPressure;
         
         public Wheel(float i_MaxAirPressure)
         {
             MaxAirPressure = i_MaxAirPressure;
         }
+
         public string ManufacturerName
         {
             get
@@ -23,7 +24,7 @@
             }
         }
 
-        public float? CurrentAirPressure
+        public float CurrentAirPressure
         {
             get
             {
@@ -51,7 +52,15 @@
 
         public void WheelInflating(float i_AirPressureToAdd)
         {
-            //LOGIC
+            float maxAirPressureThatCanAddToTheWheel = MaxAirPressure - CurrentAirPressure;
+            if(i_AirPressureToAdd>maxAirPressureThatCanAddToTheWheel)
+            {
+                throw new ValueOutOfRangeException(maxAirPressureThatCanAddToTheWheel, 0, "Wheel");
+            }
+            else
+            {
+                CurrentAirPressure += i_AirPressureToAdd;
+            }
         }
     }
 }

@@ -1,17 +1,9 @@
 ﻿namespace Ex03.GarageLogic
 {
-    public class Engine
+    public abstract class Engine
     {
-        private float? m_PercentageOfEnergyRemaining;
+        private float m_PercentageOfEnergyRemaining;
         private float m_MaxCapacityOfContainer;
-        private Container m_Container;
-
-        public Engine(Container i_Container,float i_MaxCapacityOfContainer)
-        {
-            MaxCapacityOfContainer = i_MaxCapacityOfContainer;
-            i_Container = m_Container;
-        }
-
         public float MaxCapacityOfContainer
         {
             get
@@ -25,7 +17,12 @@
             }
         }
 
-        public float? PercentageOfEnergyRemaining
+        public Engine(float i_MaxCapacityOfContainer)
+        {
+            MaxCapacityOfContainer = i_MaxCapacityOfContainer;     
+        }
+
+        public float PercentageOfEnergyRemaining
         {
             get
             {
@@ -38,9 +35,6 @@
             }
         }
 
-        public void FillTheContainer(Container i_EnergyToAddToTheContainer)
-        {
-            m_Container.Fill(i_EnergyToAddToTheContainer);
-        }
+        public abstract void FillTheContainer(Engine i_EnergyToAddToTheContainer);
     }
 }

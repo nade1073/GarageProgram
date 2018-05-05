@@ -12,9 +12,6 @@
         {
             EngineCapacity = i_EngineCapacity;
             LicsenseType = i_LicsenseType;
-
-
-
             switch (i_TypeOfEngine)
             {
                 case eTypeOfEngine.Electric:
