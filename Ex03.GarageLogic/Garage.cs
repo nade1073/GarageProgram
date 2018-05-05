@@ -4,9 +4,23 @@ namespace Ex03.GarageLogic
 {
     public class Garage
     {
+
+        private static Garage instance;
+
+        public static Garage Instance
+        {
+            get
+            {
+                if (instance == null)
+                {
+                    instance = new Garage();
+                }
+                return instance;
+            }
+        }
         private readonly List<GarageVechile> m_GarageVechiles;
 
-        public Garage()
+        private Garage()
         {
             m_GarageVechiles = new List<GarageVechile>();
         }
