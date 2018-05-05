@@ -1,4 +1,7 @@
-﻿namespace Ex03.GarageLogic
+﻿using System;
+using System.Text;
+
+namespace Ex03.GarageLogic
 {
     public class Car : Vechile
     {
@@ -51,6 +54,14 @@
             {
                 m_NumberOfDoors = value;
             }
+        }
+
+        public override string ToString()
+        {
+            StringBuilder stringToReturn = new StringBuilder();
+            stringToReturn.AppendLine(String.Format("Model:{0}, Licsense Number : {1}, Color: {2},Doors: {3},   ",ModelName,LicenseNumber,ColorOfTheCar.ToString(),NumberOfDoors.ToString()));
+            stringToReturn.AppendLine(WheelAndEngineDetails());
+            return stringToReturn.ToString();
         }
     }
 }

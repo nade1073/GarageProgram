@@ -69,7 +69,7 @@ namespace Ex03.GarageLogic
         }
         public void inflateAirInTheWheels(Vechile i_VechileToAddPressure)
         {
-            float? currentAirPressure, maxAirPressure, missingAirPressure;
+            float currentAirPressure, maxAirPressure, missingAirPressure;
             GarageVechile garageVechileInList = new GarageVechile();
             garageVechileInList = getVechileByLicenceNumber(i_VechileToAddPressure.LicenseNumber);
             if (garageVechileInList != null)

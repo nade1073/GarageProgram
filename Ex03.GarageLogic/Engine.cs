@@ -4,18 +4,6 @@
     {
         private float m_PercentageOfEnergyRemaining;
         private float m_MaxCapacityOfContainer;
-        public float MaxCapacityOfContainer
-        {
-            get
-            {
-                return m_MaxCapacityOfContainer;
-            }
-
-            set
-            {
-                m_MaxCapacityOfContainer = value;
-            }
-        }
 
         public Engine(float i_MaxCapacityOfContainer)
         {
@@ -35,6 +23,21 @@
             }
         }
 
+        public float MaxCapacityOfContainer
+        {
+            get
+            {
+                return m_MaxCapacityOfContainer;
+            }
+
+            set
+            {
+                m_MaxCapacityOfContainer = value;
+            }
+        }
+
         public abstract void FillTheContainer(Engine i_EnergyToAddToTheContainer);
+
+        public abstract override string ToString();
     }
 }

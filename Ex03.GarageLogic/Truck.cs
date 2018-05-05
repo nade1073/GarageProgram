@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Text;
+
 namespace Ex03.GarageLogic
 {
     public class Truck:Vechile
@@ -40,6 +42,14 @@ namespace Ex03.GarageLogic
             {
                 m_CargoCapacity = value;
             }
+        }
+
+        public override string ToString()
+        {
+            StringBuilder stringToReturn = new StringBuilder();
+            stringToReturn.AppendLine(String.Format("Model:{0}, Licsense Number : {1}, Trunk Cooled: {2},Cargo capacity: {3}", ModelName, LicenseNumber, IsTheTrunkCooled, CargoCapacity));
+            stringToReturn.AppendLine(WheelAndEngineDetails());
+            return stringToReturn.ToString();
         }
     }
 }

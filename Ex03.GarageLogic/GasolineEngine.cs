@@ -35,6 +35,7 @@ namespace Ex03.GarageLogic
             set
             {
                 m_Amount = value;
+                PercentageOfEnergyRemaining = m_Amount / MaxCapacityOfContainer;
             }
         }
 
@@ -64,6 +65,11 @@ namespace Ex03.GarageLogic
             {
                 throw new ArgumentException("Can't add a container to a different type of container");
             }
+        }
+
+        public override string ToString()
+        {
+            return String.Format("Type Of Engine: {0} ,Current of fuel: {1} , Type of fuel: {2} Max capacity:{3}", eTypeOfEngine.Gasoline.ToString(),Amount,FuelType.ToString() , MaxCapacityOfContainer);
         }
     }
 }

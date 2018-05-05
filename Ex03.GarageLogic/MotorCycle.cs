@@ -1,4 +1,7 @@
-﻿namespace Ex03.GarageLogic
+﻿using System;
+using System.Text;
+
+namespace Ex03.GarageLogic
 {
     class MotorCycle : Vechile
     {
@@ -52,6 +55,14 @@
             {
                 m_LicsenseType = value;
             }
+        }
+
+        public override string ToString()
+        {
+            StringBuilder stringToReturn = new StringBuilder();
+            stringToReturn.AppendLine(String.Format("Model:{0}, Licsense Number : {1}, Engine Capacity: {2},Type of Licsense: {3}", ModelName, LicenseNumber, EngineCapacity, LicsenseType.ToString()));
+            stringToReturn.AppendLine(WheelAndEngineDetails());
+            return stringToReturn.ToString();
         }
     }
 }

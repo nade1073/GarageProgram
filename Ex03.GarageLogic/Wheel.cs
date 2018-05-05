@@ -62,5 +62,10 @@
                 CurrentAirPressure += i_AirPressureToAdd;
             }
         }
+
+        public override string ToString()
+        {
+            return string.Format("Manufacture:{0}, Current air pressure:{1}, Max air pressure:{2}",ManufacturerName,CurrentAirPressure,MaxAirPressure);
+        }
     }
 }

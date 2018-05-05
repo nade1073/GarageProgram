@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace Ex03.GarageLogic
 {
@@ -26,7 +24,7 @@ namespace Ex03.GarageLogic
             }
         }
 
-        public void WheelInflating(float? i_AirPressureToAdd)
+        public void WheelInflating(float i_AirPressureToAdd)
         {
             foreach(Wheel m_CurrentWheel in m_Wheels)
             {
@@ -36,12 +34,12 @@ namespace Ex03.GarageLogic
 
         protected void initializeElectricEngine(float i_MaxCapacityOfContainer)
         {
-            EngineOfVechile = new Engine(new ElectricContainer(), i_MaxCapacityOfContainer);
+            EngineOfVechile = new ElectricEngine(i_MaxCapacityOfContainer);
         }
 
         protected void initializeGasolineEngine(eTypeOfFuel i_TypeOfFuel,float i_MaxCapacityOfContainer)
         {
-            EngineOfVechile = new Engine(new GasolineContainer(i_TypeOfFuel), i_MaxCapacityOfContainer);
+            EngineOfVechile = new GasolineEngine(i_MaxCapacityOfContainer, i_TypeOfFuel);
         }
 
         public string ModelName
@@ -77,6 +75,7 @@ namespace Ex03.GarageLogic
                 return Wheels[0].MaxAirPressure;
             }
         }
+
         public float? CurrentAirPressureOfWheels
         {
             get
@@ -118,5 +117,15 @@ namespace Ex03.GarageLogic
                 return r_NumberOfWheels;
             }
         }
+
+        protected string WheelAndEngineDetails()
+        {
+            StringBuilder stringToReturn = new StringBuilder();
+            stringToReturn.AppendLine(String.Format("Numbers of wheels {1},Details about all the wheels: {2}", NumberOfWheels, Wheels[0].ToString()));
+            stringToReturn.AppendLine(String.Format("Engin:{0}", EngineOfVechile.ToString()));
+            return stringToReturn.ToString();
+        }
+
+        public abstract override string ToString();
     }
 }
