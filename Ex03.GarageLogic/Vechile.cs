@@ -76,7 +76,7 @@ namespace Ex03.GarageLogic
             }
         }
 
-        public float? CurrentAirPressureOfWheels
+        public float CurrentAirPressureOfWheels
         {
             get
             {

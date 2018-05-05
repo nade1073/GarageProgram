@@ -61,13 +61,15 @@ namespace Ex03.GarageLogic
                 m_CurrentVechileStatus = value;
             }
         }
-        public StringBuilder ToString()
+
+        public override string ToString()
         {
             StringBuilder stringToReturn = new StringBuilder();
-
-            stringToReturn.AppendLine(String.Format("The owner Name is {0}, the Phone of the owner is {1} , the status of the vechile is {2}, The Car Details are: {3}", this.OwnerName, this.PhoneOfOwner, this.CurrentVechileStatus, this.OwnerVechile.ToString()));
-            return stringToReturn;
+            stringToReturn.AppendLine(String.Format("The owner Name is {0}, the Phone of the owner is {1} , the status of the vechile is {2}\n The Car Details are: {3}", OwnerName, PhoneOfOwner, CurrentVechileStatus.ToString(),OwnerVechile.ToString()));
+            return stringToReturn.ToString();
         }
+
+
 
     }
 }

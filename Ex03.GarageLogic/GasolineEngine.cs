@@ -12,6 +12,12 @@ namespace Ex03.GarageLogic
             FuelType = i_FuelType;
         }
 
+        public GasolineEngine(eTypeOfFuel i_FuelType,float i_AmountOfFuel):base (0)
+        {
+            FuelType = i_FuelType;
+            Amount = i_AmountOfFuel;
+        }
+
         public eTypeOfFuel FuelType
         {
             get

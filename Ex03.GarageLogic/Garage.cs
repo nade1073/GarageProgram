@@ -1,11 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Text;
 
 namespace Ex03.GarageLogic
 {
     public class Garage
     {
-
         private static Garage instance;
 
         public static Garage Instance
@@ -19,6 +19,7 @@ namespace Ex03.GarageLogic
                 return instance;
             }
         }
+
         private readonly List<GarageVechile> m_GarageVechiles;
 
         private Garage()
@@ -60,77 +61,116 @@ namespace Ex03.GarageLogic
             return isAddedToTheGarage;         
         }
 
-        public List<string> showVechilesInGarage(eVechileStatus? i_statusToFilterVechiles)
+        public List<string> ShowVechilesInGarage(eVechileStatus? i_StatusToFilterVechiles)
         {
             List<string> vechilesLicenceNumbers = new List<string>();
-            foreach (GarageVechile garageVechile in m_GarageVechiles)
+            foreach (GarageVechile currentVechile in m_GarageVechiles)
             {
-                if (i_statusToFilterVechiles == null)
+                if (i_StatusToFilterVechiles == null)
                 {
-                    vechilesLicenceNumbers.Add(garageVechile.OwnerVechile.LicenseNumber);
+                    vechilesLicenceNumbers.Add(currentVechile.ToString());
                 }
 
-                if (garageVechile.CurrentVechileStatus == i_statusToFilterVechiles)
+                else if (currentVechile.CurrentVechileStatus == i_StatusToFilterVechiles)
                 {
-                    vechilesLicenceNumbers.Add(garageVechile.OwnerVechile.LicenseNumber);
+                    vechilesLicenceNumbers.Add(currentVechile.ToString());
                 }
             }
             return vechilesLicenceNumbers;
         }
-        public void changeStatusOfVechile(string i_LicenceNumber, eVechileStatus i_NewStatus)
+
+        public bool ChangeStatusOfVechile(string i_LicenceNumber, eVechileStatus i_NewStatus)
         {
+            bool isChanged = false;
             GarageVechile garageVechileInList = new GarageVechile();
             garageVechileInList = getVechileByLicenceNumber(i_LicenceNumber);
             if (garageVechileInList != null)
             {
+                isChanged = true;
                 garageVechileInList.CurrentVechileStatus = i_NewStatus;
             }
+            return isChanged;
         }
-        public void inflateAirInTheWheels(Vechile i_VechileToAddPressure)
+
+        public string InflateAirInTheWheels(string i_LicenceNumber)
         {
+            string message=null;
             float currentAirPressure, maxAirPressure, missingAirPressure;
-            GarageVechile garageVechileInList = new GarageVechile();
-            garageVechileInList = getVechileByLicenceNumber(i_VechileToAddPressure.LicenseNumber);
+            GarageVechile garageVechileInList = getVechileByLicenceNumber(i_LicenceNumber);
             if (garageVechileInList != null)
             {
-                currentAirPressure = i_VechileToAddPressure.CurrentAirPressureOfWheels;
-                maxAirPressure = i_VechileToAddPressure.MaxAirPressureOfWheels;
+                currentAirPressure = garageVechileInList.OwnerVechile.CurrentAirPressureOfWheels;
+                maxAirPressure = garageVechileInList.OwnerVechile.MaxAirPressureOfWheels;
                 missingAirPressure = maxAirPressure - currentAirPressure;
-                i_VechileToAddPressure.WheelInflating(missingAirPressure);
+                try
+                {
+                    garageVechileInList.OwnerVechile.WheelInflating(missingAirPressure);
+                }
+                catch (ValueOutOfRangeException exception)
+                {
+                    message = exception.Message;
+                }
             }
-
-
+            return message;
         }
-        public void putInFuelInGasolineEngine(string i_LicenceNumber, eTypeOfFuel i_TypeOfFuelToAdd, float i_AmountOfFuelToAdd)
+
+        public string AddFuelToGasolineEngine(string i_LicenceNumber, eTypeOfFuel i_TypeOfFuelToAdd, float i_AmountOfFuelToAdd)
         {
-            GarageVechile garageVechileInList = new GarageVechile();
-            garageVechileInList = getVechileByLicenceNumber(i_LicenceNumber);
+            string message=null;
+            GarageVechile garageVechileInList = getVechileByLicenceNumber(i_LicenceNumber);
             if (garageVechileInList != null)
             {
-                garageVechileInList.OwnerVechile.EngineOfVechile.FillInTheContainer(i_AmountOfFuelToAdd); // check it!!!!!!!!!
+                try
+                {
+                    garageVechileInList.OwnerVechile.EngineOfVechile.FillTheContainer(new GasolineEngine(i_TypeOfFuelToAdd, i_AmountOfFuelToAdd));
+                    message = "Sucsses To add";
+                }
+                catch(ArgumentException exception)
+                {
+                    message = exception.Message;
+                }
+                catch(ValueOutOfRangeException exception)
+                {
+                    message = exception.Message;
+                }
             }
+            return message;
         }
-        public void chargeElectricEngine(string i_LicenceNumber, float i_AmountOfMinToAdd)
+
+        public string ChargeElectricEngine(string i_LicenceNumber, float i_AmountOfBatteryToAdd)
         {
-            GarageVechile garageVechileInList = new GarageVechile();
-            garageVechileInList = getVechileByLicenceNumber(i_LicenceNumber);
+            string message = null;
+            GarageVechile garageVechileInList = getVechileByLicenceNumber(i_LicenceNumber);
             if (garageVechileInList != null)
             {
-                garageVechileInList.OwnerVechile.EngineOfVechile.FillInTheContainer(i_AmountOfMinToAdd);  // check it!!!!!!!!!
+                ElectricEngine electricToAdd = new ElectricEngine();
+                electricToAdd.Battery = i_AmountOfBatteryToAdd;
+                try
+                {
+                    garageVechileInList.OwnerVechile.EngineOfVechile.FillTheContainer(electricToAdd);
+                    message = "Sucsses To add";
+                }
+                catch(ArgumentException exception)
+                {
+                    message = exception.Message;
+                }
+                catch(ValueOutOfRangeException exception)
+                {
+                    message = exception.Message;
+                }
             }
+            return message;
         }
-        public StringBuilder getCarDetails(string i_LicenceNumber)
+
+        public string GetCarDetails(string i_LicenceNumber)
         {
-            StringBuilder carDetails = null;
-            GarageVechile garageVechileInList = new GarageVechile();
-            garageVechileInList = getVechileByLicenceNumber(i_LicenceNumber);
+            string message=null;
+            GarageVechile garageVechileInList = getVechileByLicenceNumber(i_LicenceNumber);
             if (garageVechileInList != null)
             {
-                carDetails = garageVechileInList.ToString();
+                message = garageVechileInList.ToString();
             }
-
-
-            return carDetails;
+            return message;
         }
     }
 
