@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Text;
 
 namespace Ex03.GarageLogic
 {
@@ -52,12 +53,12 @@ namespace Ex03.GarageLogic
             {
                 if (i_statusToFilterVechiles == null)
                 {
-                    vechilesLicenceNumbers.Add(garageVechile.ownerVechile.LicenseNumber);
+                    vechilesLicenceNumbers.Add(garageVechile.OwnerVechile.LicenseNumber);
                 }
 
-                if (garageVechile.currentVechileStatus == i_statusToFilterVechiles)
+                if (garageVechile.CurrentVechileStatus == i_statusToFilterVechiles)
                 {
-                    vechilesLicenceNumbers.Add(garageVechile.ownerVechile.LicenseNumber);
+                    vechilesLicenceNumbers.Add(garageVechile.OwnerVechile.LicenseNumber);
                 }
             }
             return vechilesLicenceNumbers;
@@ -68,7 +69,7 @@ namespace Ex03.GarageLogic
             garageVechileInList = getVechileByLicenceNumber(i_LicenceNumber);
             if (garageVechileInList != null)
             {
-                garageVechileInList.currentVechileStatus = i_NewStatus;
+                garageVechileInList.CurrentVechileStatus = i_NewStatus;
             }
         }
         public void inflateAirInTheWheels(Vechile i_VechileToAddPressure)
@@ -92,7 +93,7 @@ namespace Ex03.GarageLogic
             garageVechileInList = getVechileByLicenceNumber(i_LicenceNumber);
             if (garageVechileInList != null)
             {
-                garageVechileInList.ownerVechile.EngineOfVechile.FillInTheContainer(i_AmountOfFuelToAdd); // check it!!!!!!!!!
+                garageVechileInList.OwnerVechile.EngineOfVechile.FillInTheContainer(i_AmountOfFuelToAdd); // check it!!!!!!!!!
             }
         }
         public void chargeElectricEngine(string i_LicenceNumber, float i_AmountOfMinToAdd)
@@ -101,17 +102,17 @@ namespace Ex03.GarageLogic
             garageVechileInList = getVechileByLicenceNumber(i_LicenceNumber);
             if (garageVechileInList != null)
             {
-                garageVechileInList.ownerVechile.EngineOfVechile.FillInTheContainer(i_AmountOfMinToAdd);  // check it!!!!!!!!!
+                garageVechileInList.OwnerVechile.EngineOfVechile.FillInTheContainer(i_AmountOfMinToAdd);  // check it!!!!!!!!!
             }
         }
-        public string getCarDetails(string i_LicenceNumber)
+        public StringBuilder getCarDetails(string i_LicenceNumber)
         {
-            string carDetails = null;
+            StringBuilder carDetails = null;
             GarageVechile garageVechileInList = new GarageVechile();
             garageVechileInList = getVechileByLicenceNumber(i_LicenceNumber);
             if (garageVechileInList != null)
             {
-                carDetails = string.Format("The Licence number is {0}, The Model Name is {1}, The Owner Name is {2}\n The type in the garage is {3}, The Wheel Pressure is {4}");
+                carDetails = garageVechileInList.ToString();
             }
 
 
