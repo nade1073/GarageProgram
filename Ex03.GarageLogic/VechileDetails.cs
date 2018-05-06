@@ -40,7 +40,7 @@ namespace Ex03.GarageLogic
                                     }
                                 case eTypeOfEngine.Gasoline:
                                     {
-                                        if (value > Car.k_MaxOfContainerOfElectricEngine)
+                                        if (value > Car.k_MaxOfContainerOfGasolineEngine)
                                         {
                                             throw new ValueOutOfRangeException(Car.k_MaxOfContainerOfGasolineEngine, 0, eTypeOfEngine.Gasoline.ToString());
                                         }
