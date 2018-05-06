@@ -45,9 +45,9 @@ namespace Ex03.GarageLogic
             }
         }
 
-        public override void FillTheContainer(Engine i_ContainerOfEngineToAdd)
+        public override void FillTheContainer(Engine i_EnergyToAddToTheContainer)
         {
-            GasolineEngine containerToFill = i_ContainerOfEngineToAdd as GasolineEngine;
+            GasolineEngine containerToFill = i_EnergyToAddToTheContainer as GasolineEngine;
             if(containerToFill!=null)
             {
                 if(containerToFill.FuelType!=this.FuelType)

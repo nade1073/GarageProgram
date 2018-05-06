@@ -167,10 +167,12 @@ namespace Ex03.ConsoleUI
         {
             CarDetails carDetails = new CarDetails();
             carDetails.VechileDetails = i_VechileDetails;
+            CarProperties carProperties = new CarProperties();
             Console.WriteLine("Please Enter Number Of Doors: (2,3,4,5)");
-            carDetails.NumberOfDoors = (eDoors)Enum.Parse(typeof(eDoors), Console.ReadLine());
+            carProperties.NumberOfDoors = (eDoors)Enum.Parse(typeof(eDoors), Console.ReadLine());
             Console.WriteLine("Please Enter Color Of Car: (Blue,White,Black,Gray)");
-            carDetails.ColorOfCar = (eColor)Enum.Parse(typeof(eColor), Console.ReadLine());
+            carProperties.ColorOfTheCar = (eColor)Enum.Parse(typeof(eColor), Console.ReadLine());
+            carDetails.CarProperties = carProperties;
             return VechileFactory.CreateAndInsertVechile(carDetails);
 
         }       
@@ -178,11 +180,13 @@ namespace Ex03.ConsoleUI
         private static bool addNewMotorcycleToGarage(VechileDetails i_VechileDetails)
         {
             MotorCycleDetails motorcycleDetails = new MotorCycleDetails();
+            MotorcycleProperties motorcycleProperties = new MotorcycleProperties();
             motorcycleDetails.VechileDetails = i_VechileDetails;
             Console.WriteLine("Please Enter Engine Capacity:");
-            motorcycleDetails.EngineCapacity = int.Parse(Console.ReadLine());
+            motorcycleProperties.EngineCapacity = int.Parse(Console.ReadLine());
             Console.WriteLine("Please Licsene of Motorcycle: (A,A1,B1,B2)");
-            motorcycleDetails.LicsenseType = (eLicenseType)Enum.Parse(typeof(eLicenseType), Console.ReadLine());
+            motorcycleProperties.LicsenseType = (eLicenseType)Enum.Parse(typeof(eLicenseType), Console.ReadLine());
+            motorcycleDetails.MotorcycleProperties = motorcycleProperties;
             return VechileFactory.CreateAndInsertVechile(motorcycleDetails);
 
         } 
@@ -190,13 +194,13 @@ namespace Ex03.ConsoleUI
         private static bool addNewTruckToGarage(VechileDetails i_VechileDetails)
         {
             TruckDetails truckDetails = new TruckDetails();
+            TruckProperties truckProperties = new TruckProperties();
             truckDetails.VechileDetails = i_VechileDetails;
             Console.WriteLine("Please Enter The Cargo Capacity:");
-            //Try Prase??
-            truckDetails.CargoCapacity = float.Parse(Console.ReadLine());
+            truckProperties.CargoCapacity = float.Parse(Console.ReadLine());
             Console.WriteLine("Please eneter if the Trunk of the truck is cooled: (True,False)");
-            //Try Prase??
-            truckDetails.IsTheTrunkCooled = Boolean.Parse(Console.ReadLine());
+            truckProperties.IsTheTrunkCooled = Boolean.Parse(Console.ReadLine());
+            truckDetails.TruckProperties = truckProperties;
             return VechileFactory.CreateAndInsertVechile(truckDetails);
 
         } 

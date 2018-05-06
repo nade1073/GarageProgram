@@ -64,6 +64,9 @@
     <Compile Include="MotorCycleDetails.cs" />
     <Compile Include="TruckDetails.cs" />
     <Compile Include="Details.cs" />
+    <Compile Include="CarProperties.cs" />
+    <Compile Include="MotorcycleProperties.cs" />
+    <Compile Include="TruckProperties.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

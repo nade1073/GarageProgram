@@ -34,7 +34,7 @@ namespace Ex03.GarageLogic
                 float maxFuelToAdd = MaxCapacityOfContainer - Battery;
                 if (containerToFill.Battery > maxFuelToAdd)
                 {
-                    throw new ValueOutOfRangeException(maxFuelToAdd, 0, "ElectricEngine");
+                    throw new ValueOutOfRangeException(maxFuelToAdd, 0, eTypeOfEngine.Electric.ToString());
                 }
                 else
                 {

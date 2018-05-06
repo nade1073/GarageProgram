@@ -5,49 +5,35 @@ namespace Ex03.GarageLogic
 {
     public class Truck:Vechile
     {
-        private bool m_IsTheTrunkCooled;
-        private float m_CargoCapacity;
+        private TruckProperties m_TruckProperties;
         private const int k_NumberOfWheelsOfTruck = 12;
         private const int k_MaxAirPressureOfWheelOfTruck = 28;
+        private const int k_FuelContainerOfTruck = 115;
 
         public Truck(string i_ModelName, string i_LicenseNumber, bool i_IsTheTrunkCooled, float i_CargoCapacity) : 
             base(i_ModelName, i_LicenseNumber, k_NumberOfWheelsOfTruck, k_MaxAirPressureOfWheelOfTruck)
         {
-            IsTheTrunkCooled = i_IsTheTrunkCooled;
-            CargoCapacity = i_CargoCapacity;
-            initializeGasolineEngine(eTypeOfFuel.Soler,115);
+            TruckProperties = new TruckProperties(i_IsTheTrunkCooled, i_CargoCapacity);
+            initializeGasolineEngine(eTypeOfFuel.Soler,k_FuelContainerOfTruck);
         }
 
-        public bool IsTheTrunkCooled
+        public TruckProperties TruckProperties
         {
             get
             {
-                return m_IsTheTrunkCooled;
+                return m_TruckProperties;
             }
-
             set
             {
-                m_IsTheTrunkCooled = value;
+                m_TruckProperties = value;
             }
         }
 
-        public float CargoCapacity
-        {
-            get
-            {
-                return m_CargoCapacity;
-            }
-
-            set
-            {
-                m_CargoCapacity = value;
-            }
-        }
 
         public override string ToString()
         {
             StringBuilder stringToReturn = new StringBuilder();
-            stringToReturn.AppendLine(String.Format("Model:{0}, Licsense Number : {1}, Trunk Cooled: {2},Cargo capacity: {3}", ModelName, LicenseNumber, IsTheTrunkCooled, CargoCapacity));
+            stringToReturn.AppendLine(String.Format("Model:{0}, Licsense Number : {1}, {2}", ModelName, LicenseNumber,TruckProperties.ToString()));
             stringToReturn.AppendLine(WheelAndEngineDetails());
             return stringToReturn.ToString();
         }

@@ -1,34 +1,19 @@
-﻿using System;
-namespace Ex03.GarageLogic
+﻿namespace Ex03.GarageLogic
 {
     public class CarDetails : Details
     {
-        private eColor m_ColorOfCar;
-        private eDoors m_NumberOfDoors;
+        private CarProperties m_CarProperties;
 
-        public eColor ColorOfCar
+        public CarProperties CarProperties
         {
             get
             {
-                return m_ColorOfCar;
+                return m_CarProperties;
             }
             set
             {
-                m_ColorOfCar = value;
+                m_CarProperties = value;
             }
         }
-
-        public eDoors NumberOfDoors
-        {
-            get
-            {
-                return m_NumberOfDoors;
-            }
-            set
-            {
-                m_NumberOfDoors = value;
-            }
-        }
-
     }
 }

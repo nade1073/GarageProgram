@@ -3,32 +3,20 @@ namespace Ex03.GarageLogic
 {
     public class MotorCycleDetails : Details
     {
-        private eLicenseType m_LicsenseType;
-        private int m_EngineCapacity;
+        private MotorcycleProperties m_MotorcycleProperties;
 
-        public eLicenseType LicsenseType
+        public MotorcycleProperties MotorcycleProperties
         {
             get
             {
-                return m_LicsenseType;
+                return m_MotorcycleProperties;
             }
             set
             {
-                m_LicsenseType = value;
+                m_MotorcycleProperties = value;
             }
         }
-
-        public int EngineCapacity
-        {
-            get
-            {
-                return m_EngineCapacity;
-            }
-            set
-            {
-                m_EngineCapacity = value;
-            }
-        }
+    
         
     }
 }

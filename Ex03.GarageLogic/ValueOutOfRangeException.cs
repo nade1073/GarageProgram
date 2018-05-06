@@ -65,7 +65,7 @@ namespace Ex03.GarageLogic
 
             set
             {
-                Item = value;
+                m_Item = value;
             }
         }
     }

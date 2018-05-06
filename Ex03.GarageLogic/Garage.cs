@@ -6,17 +6,17 @@ namespace Ex03.GarageLogic
 {
     public class Garage
     {
-        private static Garage instance;
+        private static Garage m_Instance;
 
         public static Garage Instance
         {
             get
             {
-                if (instance == null)
+                if (m_Instance == null)
                 {
-                    instance = new Garage();
+                    m_Instance = new Garage();
                 }
-                return instance;
+                return m_Instance;
             }
         }
 
@@ -128,6 +128,8 @@ namespace Ex03.GarageLogic
             }
             return isAdded;
         }
+
+
 
         public string GetCarDetails(VechileDetails i_VechileDetails)
         {

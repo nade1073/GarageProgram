@@ -5,61 +5,47 @@ namespace Ex03.GarageLogic
 {
     public class Car : Vechile
     {
-        private eColor m_ColorOfTheCar;
-        private eDoors m_NumberOfDoors;
+        private CarProperties m_CarProperties;
         private const int k_NumberOfWheelsOfCar= 4;
         private const int k_MaxAirPressureOfWheelOfCar = 32;
+        private const float k_MaxOfContainerOfElectricEngine = 3.2f;
+        private const float k_MaxOfContainerOfGasolineEngine = 45;
 
         public Car(string i_ModelName, string i_LicenseNumber,eColor i_ColorOfTheCar,eDoors i_NumberOfDoors,eTypeOfEngine i_TypeOfEngine) : 
             base(i_ModelName, i_LicenseNumber, k_NumberOfWheelsOfCar, k_MaxAirPressureOfWheelOfCar)
         {
-            ColorOfTheCar = i_ColorOfTheCar;
-            NumberOfDoors = i_NumberOfDoors;
+            m_CarProperties = new CarProperties(i_ColorOfTheCar, i_NumberOfDoors);
             switch(i_TypeOfEngine)
             {
                 case eTypeOfEngine.Electric:
                     {
-                        initializeElectricEngine(3.2f);
+                        initializeElectricEngine(k_MaxOfContainerOfElectricEngine);
                         break;
                     }
                 case eTypeOfEngine.Gasoline:
                     {
-                        initializeGasolineEngine(eTypeOfFuel.Ocatn98, 45);
+                        initializeGasolineEngine(eTypeOfFuel.Ocatn98, k_MaxOfContainerOfGasolineEngine);
                         break;
                     }
             }
         }
 
-        public eColor ColorOfTheCar
+        public CarProperties CarProperties
         {
             get
             {
-                return m_ColorOfTheCar;
+                return m_CarProperties;
             }
-
             set
             {
-                m_ColorOfTheCar = value;
-            }
-        }
-
-        public eDoors NumberOfDoors
-        {
-            get
-            {
-                return m_NumberOfDoors;
-            }
-
-            set
-            {
-                m_NumberOfDoors = value;
+                CarProperties = value;
             }
         }
 
         public override string ToString()
         {
             StringBuilder stringToReturn = new StringBuilder();
-            stringToReturn.AppendLine(String.Format("Model:{0}, Licsense Number : {1}, Color: {2},Doors: {3},   ",ModelName,LicenseNumber,ColorOfTheCar.ToString(),NumberOfDoors.ToString()));
+            stringToReturn.AppendLine(String.Format("Model:{0}, Licsense Number : {1}, {2}",ModelName,LicenseNumber,m_CarProperties.ToString()));
             stringToReturn.AppendLine(WheelAndEngineDetails());
             return stringToReturn.ToString();
         }
