@@ -85,20 +85,27 @@ namespace Ex03.ConsoleUI
                                     Console.WriteLine("Not found vechie to add a fuel");
                                 }
                             }
-                            catch (ValueOutOfRangeException exception)
+                            catch (ValueOutOfRangeException i_Exception)
                             {
-                                Console.WriteLine(exception.Message);
+                                Console.WriteLine(i_Exception.Message);
                             }
                             break;
                         case "6":
                             try
                             {
-                                chargeElectricCar();
-                                //message = "Sucsses To add";
+                                ;
+                                if (chargeElectricCar())
+                                {
+                                    Console.WriteLine("Succsses to charge to electric Container");
+                                }
+                                else
+                                {
+                                    Console.WriteLine("Not found vechie to charge");
+                                }
                             }
-                            catch (ValueOutOfRangeException exception)
+                            catch (ValueOutOfRangeException i_Exception)
                             {
-                                ///message = exception.Message;??
+                                Console.WriteLine(i_Exception.Message);
                             }
                             break;
                         case "7":
@@ -124,7 +131,7 @@ namespace Ex03.ConsoleUI
                     }
                     catch(ArgumentException i_Exception)
                     {
-                        Console.WriteLine("Invalid Input entred");
+                        Console.WriteLine(i_Exception.Message);
                     }
                 }
             }
