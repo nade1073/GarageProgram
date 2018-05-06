@@ -1,12 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Ex03.GarageLogic
+﻿namespace Ex03.GarageLogic
 {
+    using System.Collections.Generic;
+
     public class Garage
     {
         private static Garage m_Instance;
+        private readonly List<GarageVechile> m_GarageVechiles;
+
+        private Garage()
+        {
+            m_GarageVechiles = new List<GarageVechile>();
+        }
 
         public static Garage Instance
         {
@@ -16,28 +20,9 @@ namespace Ex03.GarageLogic
                 {
                     m_Instance = new Garage();
                 }
+
                 return m_Instance;
             }
-        }
-
-        private readonly List<GarageVechile> m_GarageVechiles;
-
-        private Garage()
-        {
-            m_GarageVechiles = new List<GarageVechile>();
-        }
-
-        private GarageVechile getVechileByLicenceNumber(string i_LicenceNumber)
-        {
-            GarageVechile garageVechileToReturn = null;
-            foreach (GarageVechile currentVechile in m_GarageVechiles)
-            {
-                if (currentVechile.OwnerVechile.LicenseNumber == i_LicenceNumber)
-                {
-                    garageVechileToReturn = currentVechile;
-                }
-            }
-            return garageVechileToReturn;
         }
 
         public bool AddVechileToGarage(GarageVechile i_VechileToAddToGarage)
@@ -53,6 +38,7 @@ namespace Ex03.GarageLogic
                 m_GarageVechiles.Add(i_VechileToAddToGarage);
                 isAddedToTheGarage = true;
             }
+
             return isAddedToTheGarage;         
         }
 
@@ -65,12 +51,12 @@ namespace Ex03.GarageLogic
                 {
                     vechilesLicenceNumbers.Add(currentVechile.OwnerVechile.LicenseNumber.ToString());
                 }
-
                 else if (currentVechile.CurrentVechileStatus == i_StatusToFilterVechiles)
                 {
                     vechilesLicenceNumbers.Add(currentVechile.OwnerVechile.LicenseNumber.ToString());
                 }
             }
+
             return vechilesLicenceNumbers;
         }
 
@@ -83,6 +69,7 @@ namespace Ex03.GarageLogic
                 garageVechileInList.CurrentVechileStatus = i_VechileDetails.VechileStatus;
                 isChanged = true;
             }
+
             return isChanged;
         }
 
@@ -99,6 +86,7 @@ namespace Ex03.GarageLogic
                 garageVechileInList.OwnerVechile.WheelInflating(missingAirPressure);
                 isAdded = true;
             }
+
             return isAdded;
         }
 
@@ -111,6 +99,7 @@ namespace Ex03.GarageLogic
                 garageVechileInList.OwnerVechile.EngineOfVechile.FillTheContainer(new GasolineEngine(i_VechileDetails.TypeOfFuel, i_VechileDetails.Amount));
                 isAdded = true;
             }
+
             return isAdded;
         }
 
@@ -124,10 +113,9 @@ namespace Ex03.GarageLogic
                 garageVechileInList.OwnerVechile.EngineOfVechile.FillTheContainer(electricToAdd);
                 isAdded = true;
             }
+
             return isAdded;
         }
-
-
 
         public string GetCarDetails(VechileDetails i_VechileDetails)
         {
@@ -137,8 +125,22 @@ namespace Ex03.GarageLogic
             {
                 message = garageVechileInList.ToString();
             }
+
             return message;
         }
-    }
 
+        private GarageVechile getVechileByLicenceNumber(string i_LicenceNumber)
+        {
+            GarageVechile garageVechileToReturn = null;
+            foreach (GarageVechile currentVechile in m_GarageVechiles)
+            {
+                if (currentVechile.OwnerVechile.LicenseNumber == i_LicenceNumber)
+                {
+                    garageVechileToReturn = currentVechile;
+                }
+            }
+
+            return garageVechileToReturn;
+        }
+    }
 }

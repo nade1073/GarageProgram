@@ -10,6 +10,7 @@
             {
                 return m_CarProperties;
             }
+
             set
             {
                 m_CarProperties = value;

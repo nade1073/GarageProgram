@@ -53,7 +53,7 @@
         public void WheelInflating(float i_AirPressureToAdd)
         {
             float maxAirPressureThatCanAddToTheWheel = MaxAirPressure - CurrentAirPressure;
-            if(i_AirPressureToAdd>maxAirPressureThatCanAddToTheWheel)
+            if (i_AirPressureToAdd > maxAirPressureThatCanAddToTheWheel)
             {
                 throw new ValueOutOfRangeException(maxAirPressureThatCanAddToTheWheel, 0, "Wheel");
             }
@@ -65,7 +65,7 @@
 
         public override string ToString()
         {
-            return string.Format("Manufacture:{0}, Current air pressure:{1}, Max air pressure:{2}",ManufacturerName,CurrentAirPressure,MaxAirPressure);
+            return string.Format("Manufacture:{0}, Current air pressure:{1}, Max air pressure:{2}", ManufacturerName, CurrentAirPressure, MaxAirPressure);
         }
     }
 }

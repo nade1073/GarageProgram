@@ -10,6 +10,7 @@
             {
                 return m_TruckProperties;
             }
+
             set
             {
                 m_TruckProperties = value;

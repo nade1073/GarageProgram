@@ -1,8 +1,8 @@
-﻿using System;
-using System.Text;
-
-namespace Ex03.GarageLogic
+﻿namespace Ex03.GarageLogic
 {
+    using System;
+    using System.Text;
+
     public class GarageVechile
     {
         private string m_OwnerName;
@@ -10,7 +10,7 @@ namespace Ex03.GarageLogic
         private Vechile m_OwnerVechile;
         private eVechileStatus m_CurrentVechileStatus;
 
-        public GarageVechile(string i_OwnerName,string i_PhoneOfOwner,eVechileStatus i_Status)
+        public GarageVechile(string i_OwnerName, string i_PhoneOfOwner, eVechileStatus i_Status)
         {
             OwnerName = i_OwnerName;
             PhoneOfOwner = i_PhoneOfOwner;
@@ -72,11 +72,8 @@ namespace Ex03.GarageLogic
         public override string ToString()
         {
             StringBuilder stringToReturn = new StringBuilder();
-            stringToReturn.AppendLine(String.Format("The owner Name is {0}, the Phone of the owner is {1} , the status of the vechile is {2}\n The Car Details are: {3}", OwnerName, PhoneOfOwner, CurrentVechileStatus.ToString(),OwnerVechile.ToString()));
+            stringToReturn.AppendLine(string.Format("The owner Name is {0}, the Phone of the owner is {1} , the status of the vechile is {2}\n The Car Details are: {3}", OwnerName, PhoneOfOwner, CurrentVechileStatus.ToString(), OwnerVechile.ToString()));
             return stringToReturn.ToString();
         }
-
-
-
     }
 }

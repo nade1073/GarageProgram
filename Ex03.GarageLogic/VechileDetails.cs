@@ -1,8 +1,8 @@
-﻿using System;
-namespace Ex03.GarageLogic
+﻿namespace Ex03.GarageLogic
 {
     public class VechileDetails
     {
+        private const string k_Wheel = "Wheel";
         private eTypeOfEngine m_TypeOfEngine;
         private string m_WheelManufacture;
         private float m_CurrentAirPressure;
@@ -14,7 +14,6 @@ namespace Ex03.GarageLogic
         private eTypeOfFuel m_TypeOfFuel;
         private float m_Amount;
         private eTypeOfCar m_TypeOfCar;
-        private const string k_Wheel = "Wheel";
 
         public float Amount
         {
@@ -22,41 +21,49 @@ namespace Ex03.GarageLogic
             {
                 return m_Amount;
             }
+
             set
             {
-                switch(TypeOfCar)
+                switch (TypeOfCar)
                 {
                     case eTypeOfCar.Car:
                         {
-                            switch(TypeOfEngine)
+                            switch (TypeOfEngine)
                             {
                                 case eTypeOfEngine.Electric:
                                     {
-                                        if(value > Car.k_MaxOfContainerOfElectricEngine)
+                                        if (value > Car.k_MaxOfContainerOfElectricEngine)
                                         {
-                                            throw new ValueOutOfRangeException(Car.k_MaxOfContainerOfElectricEngine,0, eTypeOfEngine.Electric.ToString());
+                                            throw new ValueOutOfRangeException(Car.k_MaxOfContainerOfElectricEngine, 0, eTypeOfEngine.Electric.ToString());
                                         }
+
                                         break;
                                     }
+
                                 case eTypeOfEngine.Gasoline:
                                     {
                                         if (value > Car.k_MaxOfContainerOfGasolineEngine)
                                         {
                                             throw new ValueOutOfRangeException(Car.k_MaxOfContainerOfGasolineEngine, 0, eTypeOfEngine.Gasoline.ToString());
                                         }
+
                                         break;
                                     }
                             }
+
                             break;
                         }
+
                     case eTypeOfCar.Truck:
                         {
-                                if (value > Truck.k_FuelContainerOfTruck)
-                                  {
-                                       throw new ValueOutOfRangeException(Truck.k_FuelContainerOfTruck, 0, eTypeOfEngine.Gasoline.ToString());
-                                   }                              
+                            if (value > Truck.k_FuelContainerOfTruck)
+                            {
+                                throw new ValueOutOfRangeException(Truck.k_FuelContainerOfTruck, 0, eTypeOfEngine.Gasoline.ToString());
+                            }   
+                                                           
                             break;
                         }
+
                     case eTypeOfCar.Motorcycle:
                         {
                             switch (TypeOfEngine)
@@ -67,20 +74,25 @@ namespace Ex03.GarageLogic
                                         {
                                             throw new ValueOutOfRangeException(MotorCycle.k_MaxCapacityOfElectricEngine, 0, eTypeOfEngine.Electric.ToString());
                                         }
+
                                         break;
                                     }
+
                                 case eTypeOfEngine.Gasoline:
                                     {
                                         if (value > MotorCycle.k_MaxCapacityOfGasolineEngine)
                                         {
                                             throw new ValueOutOfRangeException(MotorCycle.k_MaxCapacityOfGasolineEngine, 0, eTypeOfEngine.Gasoline.ToString());
                                         }
+
                                         break;
                                     }
                             }
+
                             break;
                         }
                 }
+
                 m_Amount = value;
             }
         }
@@ -91,11 +103,11 @@ namespace Ex03.GarageLogic
             {
                 return m_TypeOfFuel;
             }
+
             set
             {
                 m_TypeOfFuel = value;
-            }
-            
+            }            
         }
 
         public string OwnerName
@@ -104,6 +116,7 @@ namespace Ex03.GarageLogic
             {
                 return m_OwnerName;
             }
+
             set
             {
                 m_OwnerName = value;
@@ -116,6 +129,7 @@ namespace Ex03.GarageLogic
             {
                 return m_VechileStatus;
             }
+
             set
             {
                 m_VechileStatus = value;
@@ -128,6 +142,7 @@ namespace Ex03.GarageLogic
             {
                 return m_PhoneOfOwner;
             }
+
             set
             {
                 m_PhoneOfOwner = value;
@@ -140,6 +155,7 @@ namespace Ex03.GarageLogic
             {
                 return m_TypeOfEngine;
             }
+
             set
             {
                 m_TypeOfEngine = value;
@@ -152,6 +168,7 @@ namespace Ex03.GarageLogic
             {
                 return m_WheelManufacture;
             }
+
             set
             {
                 m_WheelManufacture = value;
@@ -164,36 +181,42 @@ namespace Ex03.GarageLogic
             {
                 return m_CurrentAirPressure;
             }
+
             set
             {
-                switch(TypeOfCar)
+                switch (TypeOfCar)
                 {
                     case eTypeOfCar.Car:
                         {
-                            if(value > Car.k_MaxAirPressureOfWheelOfCar)
+                            if (value > Car.k_MaxAirPressureOfWheelOfCar)
                             {
                                 throw new ValueOutOfRangeException(Car.k_MaxAirPressureOfWheelOfCar, 0, k_Wheel);
                             }
+
                             break;
                         }
+
                     case eTypeOfCar.Motorcycle:
                         {
                             if (value > MotorCycle.k_MaxAirPressureOfWheelOfMotorCycle)
                             {
                                 throw new ValueOutOfRangeException(MotorCycle.k_MaxAirPressureOfWheelOfMotorCycle, 0, k_Wheel);
                             }
+
                             break;
                         }
+
                     case eTypeOfCar.Truck:
                         {
                             if (value > Truck.k_MaxAirPressureOfWheelOfTruck)
                             {
                                 throw new ValueOutOfRangeException(Car.k_MaxAirPressureOfWheelOfCar, 0, k_Wheel);
                             }
+
                             break;
                         }
-
                 }
+
                 m_CurrentAirPressure = value;
             }
         }
@@ -204,6 +227,7 @@ namespace Ex03.GarageLogic
             {
                 return m_ModelName;
             }
+
             set
             {
                 m_ModelName = value;
@@ -216,6 +240,7 @@ namespace Ex03.GarageLogic
             {
                 return m_LicenceNumber;
             }
+
             set
             {
                 m_LicenceNumber = value;
