@@ -9,15 +9,14 @@ namespace Ex03.ConsoleUI
         static void Main()
         {
             eContinueOrExit continueProgram =eContinueOrExit.Continue;
-            Console.WriteLine("Wellcom To The Garage Program designed by : Nadav Shalev & Ben Magriso\nMenu: -Choose one of the folowing options-");
-            Console.WriteLine("1.Add a new vechile to the garage.\n2.Show all the licence numbers in the garage.");
-            Console.WriteLine("3.Change the status of the vechile\n4.Inflate air in the wheels to the maximum");
-            Console.WriteLine("5.Add fuel to Gasoline Engine Car.\n6.Charge Electric car write");
-            Console.WriteLine("7.Show all the cars details inside the gargae\nYour choise:");
-            string chooseMenu = Console.ReadLine();
-
             while (continueProgram.Equals(eContinueOrExit.Continue))
             {
+                Console.WriteLine("Wellcom To The Garage Program designed by : Nadav Shalev & Ben Magriso\nMenu: -Choose one of the folowing options-");
+                Console.WriteLine("1.Add a new vechile to the garage.\n2.Show all the licence numbers in the garage.");
+                Console.WriteLine("3.Change the status of the vechile\n4.Inflate air in the wheels to the maximum");
+                Console.WriteLine("5.Add fuel to Gasoline Engine Car.\n6.Charge Electric car write");
+                Console.WriteLine("7.Show all the cars details inside the gargae\nYour choise:");
+                string chooseMenu = Console.ReadLine();
                 try
                 {
                     switch (chooseMenu)
@@ -104,16 +103,22 @@ namespace Ex03.ConsoleUI
                 }
                 catch(ArgumentException i_Exception)
                 {
-                    Console.WriteLine("Invalid Input");
+                    Console.WriteLine("Invalid Input entred");
                 }
                 Console.WriteLine("Please Enter 'Continue' if you want to continue or 'Exit' if you want to Exit");
-                continueProgram = (eContinueOrExit)Enum.Parse(typeof(eContinueOrExit), Console.ReadLine());
-                if (continueProgram.Equals(eContinueOrExit.Continue))
+                bool isValidInput = false;
+                while (!isValidInput)
                 {
-                   Console.WriteLine("Please Choose Option From The Menu Again");
-                   chooseMenu = Console.ReadLine();
+                    try
+                    {
+                        continueProgram = (eContinueOrExit)Enum.Parse(typeof(eContinueOrExit), Console.ReadLine());
+                        isValidInput = true;
+                    }
+                    catch(ArgumentException i_Exception)
+                    {
+                        Console.WriteLine("Invalid Input entred");
+                    }
                 }
-
             }
        }
         
