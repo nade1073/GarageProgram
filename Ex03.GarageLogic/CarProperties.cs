@@ -39,11 +39,18 @@
 
             set
             {
+<<<<<<< HEAD
+               /* if((int)NumberOfDoors<2 || (int)NumberOfDoors>5)
+                {
+                    throw new ArgumentException("Cannot set" + (int)NumberOfDoors + " doors");
+                }*/
+=======
                 if ((int)NumberOfDoors < 2 || (int)NumberOfDoors > 5)
                 {
                     throw new ArgumentException("Cannot set" + (int)NumberOfDoors + " doors");
                 }
 
+>>>>>>> b26b8dcb084e393c4d02e0774421fe0d22a8dc8d
                 m_NumberOfDoors = value;
             }
         }

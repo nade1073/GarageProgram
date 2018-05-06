@@ -95,7 +95,7 @@
                                 }
                                 catch (ValueOutOfRangeException i_Exception)
                                 {
-                                    Console.WriteLine(i_Exception.Message);
+                                    Console.WriteLine("ValueOutOfRange Exception");
                                 }
 
                                 break;
@@ -116,7 +116,7 @@
                                 }
                                 catch (ValueOutOfRangeException i_Exception)
                                 {
-                                    Console.WriteLine(i_Exception.Message);
+                                    Console.WriteLine("ValueOutOfRange Exception");
                                 }
                             }
 
@@ -134,9 +134,12 @@
                 }
                 catch (ArgumentException i_Exception)
                 {
-                    Console.WriteLine(i_Exception.Message);
+                    Console.WriteLine("Argument Exception");
                 }
-
+                catch (FormatException i_Exception)
+                {
+                    Console.WriteLine("Format Exception");
+                }
                 Console.WriteLine("Please Enter 'Continue' if you want to continue or 'Exit' if you want to Exit");
                 bool isValidInput = false;
                 while (!isValidInput)
@@ -148,7 +151,7 @@
                     }
                     catch (ArgumentException i_Exception)
                     {
-                        Console.WriteLine(i_Exception.Message);
+                        Console.WriteLine("Argument Exception");
                     }
                 }
             }
@@ -274,7 +277,7 @@
             CarDetails carDetails = new CarDetails();
             carDetails.VechileDetails = i_VechileDetails;
             CarProperties carProperties = new CarProperties();
-            Console.WriteLine("Please Enter Number Of Doors: (2,3,4,5)");
+            Console.WriteLine("Please Enter Number Of Doors: (Two,Three,Four,Five)");
             carProperties.NumberOfDoors = (eDoors)Enum.Parse(typeof(eDoors), Console.ReadLine());
             Console.WriteLine("Please Enter Color Of Car: (Blue,White,Black,Gray)");
             carProperties.ColorOfTheCar = (eColor)Enum.Parse(typeof(eColor), Console.ReadLine());
