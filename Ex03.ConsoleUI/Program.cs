@@ -129,11 +129,14 @@ namespace Ex03.ConsoleUI
                             vechileDetails.TypeOfCar = eTypeOfCar.Car;
                             vechileDetails.TypeOfEngine = getTypeOfEngineFromClient();
                             vechileDetails.Amount = getAmountFromClient();
+                            vechileDetails.CurrentAirPressure = getAirPressureFromClient();
                             isAdded = addNewCarToGarage(vechileDetails);
                             break;
                         }
                     case "2":
                         {
+                            Console.WriteLine("Enter Current air pressure of the wheels:");
+                            vechileDetails.CurrentAirPressure = Console.ReadLine();
                             vechileDetails.TypeOfCar = eTypeOfCar.Motorcycle;
                             vechileDetails.TypeOfEngine = getTypeOfEngineFromClient();
                             vechileDetails.Amount = getAmountFromClient();
@@ -142,6 +145,8 @@ namespace Ex03.ConsoleUI
                         }
                     case "3":
                         {
+                            Console.WriteLine("Enter Current air pressure of the wheels:");
+                            vechileDetails.CurrentAirPressure = Console.ReadLine();
                             vechileDetails.TypeOfCar = eTypeOfCar.Truck;
                             vechileDetails.TypeOfEngine = eTypeOfEngine.Gasoline;
                             isAdded = addNewTruckToGarage(vechileDetails);
@@ -156,6 +161,12 @@ namespace Ex03.ConsoleUI
             }
             return isAdded;
             
+        }
+
+        private float getAirPressureFromClient()
+        {
+           Console.WriteLine("Enter Current air pressure of the wheels:");
+           return float.Parse(Console.ReadLine());
         }
 
         private static float getAmountFromClient()

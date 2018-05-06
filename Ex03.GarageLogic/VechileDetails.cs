@@ -5,7 +5,7 @@ namespace Ex03.GarageLogic
     {
         private eTypeOfEngine m_TypeOfEngine;
         private string m_WheelManufacture;
-        private string m_CurrentAirPressure;
+        private float m_CurrentAirPressure;
         private string m_ModelName;
         private string m_LicenceNumber;
         private string m_OwnerName;
@@ -13,7 +13,8 @@ namespace Ex03.GarageLogic
         private eVechileStatus m_VechileStatus;
         private eTypeOfFuel m_TypeOfFuel;
         private float m_Amount;
-        private eTypeOfCar m_TypeOfCar; 
+        private eTypeOfCar m_TypeOfCar;
+        private const string k_Wheel = "Wheel";
 
         public float Amount
         {
@@ -96,6 +97,7 @@ namespace Ex03.GarageLogic
             }
             
         }
+
         public string OwnerName
         {
             get
@@ -156,7 +158,7 @@ namespace Ex03.GarageLogic
             }
         }
 
-        public string CurrentAirPressure
+        public float CurrentAirPressure
         {
             get
             {
@@ -164,6 +166,34 @@ namespace Ex03.GarageLogic
             }
             set
             {
+                switch(TypeOfCar)
+                {
+                    case eTypeOfCar.Car:
+                        {
+                            if(value > Car.k_MaxAirPressureOfWheelOfCar)
+                            {
+                                throw new ValueOutOfRangeException(Car.k_MaxAirPressureOfWheelOfCar, 0, k_Wheel);
+                            }
+                            break;
+                        }
+                    case eTypeOfCar.Motorcycle:
+                        {
+                            if (value > MotorCycle.k_MaxAirPressureOfWheelOfMotorCycle)
+                            {
+                                throw new ValueOutOfRangeException(MotorCycle.k_MaxAirPressureOfWheelOfMotorCycle, 0, k_Wheel);
+                            }
+                            break;
+                        }
+                    case eTypeOfCar.Truck:
+                        {
+                            if (value > Truck.k_MaxAirPressureOfWheelOfTruck)
+                            {
+                                throw new ValueOutOfRangeException(Car.k_MaxAirPressureOfWheelOfCar, 0, k_Wheel);
+                            }
+                            break;
+                        }
+
+                }
                 m_CurrentAirPressure = value;
             }
         }

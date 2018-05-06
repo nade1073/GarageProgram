@@ -7,9 +7,9 @@ namespace Ex03.GarageLogic
     {
         private MotorcycleProperties m_MotorcycleProperties;
         private const int k_NumberOfWheelsOfMotorCycle = 2;
-        private const int k_MaxAirPressureOfWheelOfMotorCycle = 30;
-        private const float k_MaxCapacityOfElectricEngine = 1.8f;
-        private const float k_MaxCapacityOfGasolineEngine = 6;
+        public const int k_MaxAirPressureOfWheelOfMotorCycle = 30;
+        public const float k_MaxCapacityOfElectricEngine = 1.8f;
+        public const float k_MaxCapacityOfGasolineEngine = 6;
 
         public MotorCycle(string i_ModelName, string i_LicenseNumber, eLicenseType i_LicsenseType, int i_EngineCapacity, eTypeOfEngine i_TypeOfEngine, float i_AmountOfContainer) : 
             base(i_ModelName, i_LicenseNumber, k_NumberOfWheelsOfMotorCycle, k_MaxAirPressureOfWheelOfMotorCycle)

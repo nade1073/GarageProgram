@@ -7,7 +7,7 @@ namespace Ex03.GarageLogic
     {
         private CarProperties m_CarProperties;
         private const int k_NumberOfWheelsOfCar= 4;
-        private const int k_MaxAirPressureOfWheelOfCar = 32;
+        public const int k_MaxAirPressureOfWheelOfCar = 32;
         public const float k_MaxOfContainerOfElectricEngine = 3.2f;
         public const float k_MaxOfContainerOfGasolineEngine = 45;
 
