@@ -258,7 +258,7 @@ namespace Ex03.ConsoleUI
         {    
             VechileDetails vechileDetails = new VechileDetails();
             vechileDetails.LicenceNumber = getLicsenceNumberFromClient(); 
-            Console.WriteLine("Please Enter The status of the car: (Repair,Fixed,Paid,Gray)");
+            Console.WriteLine("Please Enter The status of the car: (Repair,Fixed,Paid)");
             vechileDetails.VechileStatus = (eVechileStatus)Enum.Parse(typeof(eVechileStatus), Console.ReadLine());
             return Garage.Instance.ChangeStatusOfVechile(vechileDetails);
         }
