@@ -10,6 +10,13 @@ namespace Ex03.GarageLogic
         private Vechile m_OwnerVechile;
         private eVechileStatus m_CurrentVechileStatus;
 
+        public GarageVechile(string i_OwnerName,string i_PhoneOfOwner,eVechileStatus i_Status)
+        {
+            OwnerName = i_OwnerName;
+            PhoneOfOwner = i_PhoneOfOwner;
+            CurrentVechileStatus = i_Status;
+        }
+
         public string OwnerName
         {
             get

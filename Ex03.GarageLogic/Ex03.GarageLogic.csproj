@@ -58,6 +58,12 @@
     <Compile Include="ValueOutOfRangeException.cs" />
     <Compile Include="Vechile.cs" />
     <Compile Include="Wheel.cs" />
+    <Compile Include="VechileFactory.cs" />
+    <Compile Include="VechileDetails.cs" />
+    <Compile Include="CarDetails.cs" />
+    <Compile Include="MotorCycleDetails.cs" />
+    <Compile Include="TruckDetails.cs" />
+    <Compile Include="Details.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Ex03.GarageLogic;
 
 namespace Ex03.ConsoleUI
 {
@@ -7,16 +8,17 @@ namespace Ex03.ConsoleUI
     {
         static void Main(string[] args)
         {
-
-            Console.WriteLine("Please Choose what you want to do: \nAdd a new vechile to the garage write '1'\nShow all the licence numbers in the garage write '2'");
-            Console.WriteLine("Change the status of the vechile write '3'\n Inflate air in the wheels to the maximum write '4'");
-            Console.WriteLine("Add fuel to Gasoline Engine Car write '5'\nCharge Electric car write '6");
-            Console.WriteLine("Show all the car details '7'\n");
+            Console.WriteLine("Wellcom To The Garage Program designed by : Nadav Shalev & Ben Magriso\nMenu: -Choose one of the folowing options-");
+            Console.WriteLine("1.Add a new vechile to the garage.\n2Show all the licence numbers in the garage.");
+            Console.WriteLine("3.Change the status of the vechile\n4.Inflate air in the wheels to the maximum");
+            Console.WriteLine("5.Add fuel to Gasoline Engine Car.\n6.Charge Electric car write");
+            Console.WriteLine("7.Show all the cars details inside the gargae\nYour choise:");
             string chooseMenu = Console.ReadLine();
+            //EnterALoop//
             switch (chooseMenu) // need to add Parse to all inputs
             {
                 case "1":
-                    addNewCarToGarage();
+                    addVechileToGarage();
                     break;
                 case "2":
                     showAllLicenceNumbers();
@@ -37,54 +39,101 @@ namespace Ex03.ConsoleUI
                     printAllCarDetails();
                     break;
             }
-
         }
 
-
-        private static void addNewCarToGarage()
+        private static void addVechileToGarage()
         {
-            string fuelOrElectricAmount, wheelManufacture, currentAirPressure, modelName, licenceNumber, carType;
-            eTypeOfEngine engineType;
-            Console.WriteLine("Please Enter Current Amount of Fuel/Electric\n");
-            fuelOrElectricAmount = Console.ReadLine();
-            Console.WriteLine("Please Enter the wheel manufacturer\n");
-            wheelManufacture = Console.ReadLine();
-            Console.WriteLine("Please Enter Current Air Pressure\n");
-            currentAirPressure = Console.ReadLine();
-            Console.WriteLine("Please Enter the model name\n");
-            modelName = Console.ReadLine();
-            Console.WriteLine("Please Enter the Licence Number\n");
-            licenceNumber = Console.ReadLine();
-            Console.WriteLine("please enter `0` if you gasoling car, please enter `1` if you enter  electric car, `2` for MotorCycle, `3` for truck");
-            carType = Console.ReadLine();
-            switch (carType)
+            VechileDetails vechileDetails = new VechileDetails();
+            Console.WriteLine("Enter Owner name:");
+            vechileDetails.OwnerName = Console.ReadLine();
+            Console.WriteLine("Enter Phonenumber of Owner:");
+            vechileDetails.PhoneOfOwner = Console.ReadLine();
+            Console.WriteLine("Enter Model name:");
+            vechileDetails.ModelName = Console.ReadLine();
+            Console.WriteLine("Enter Licencenumber of the vechile:");
+            vechileDetails.LicenceNumber = Console.ReadLine();
+            Console.WriteLine("Enter the wheel manufacture");
+            vechileDetails.WheelManufacture = Console.ReadLine();
+            Console.WriteLine("Enter Current air pressure of the wheels:");
+            vechileDetails.CurrentAirPressure = Console.ReadLine();
+            Console.WriteLine("Choose one of the folowing options:");
+            Console.WriteLine("1.Car\n2.MotorCycle\n3.Truck\nYour choise:");
+            //Insert Loop 
+            string chooseMenu = Console.ReadLine();
+            switch(chooseMenu)
             {
-                case "0":
-                    engineType = eTypeOfEngine.Gasoline;
-                    createNewCar(engineType, fuelOrElectricAmount, wheelManufacture, currentAirPressure, modelName, licenceNumber);
-                    break;
                 case "1":
-                    engineType = eTypeOfEngine.Electric;
-                    createNewCar(engineType, fuelOrElectricAmount, wheelManufacture, currentAirPressure, modelName, licenceNumber);
-                    break;
+                    {
+                        vechileDetails.TypeOfEngine = getTypeOfEngineFromClient();
+                        addNewCarToGarage(vechileDetails);
+                        break;
+                    }
                 case "2":
-                    createNewMotorcycle(fuelOrElectricAmount, wheelManufacture, currentAirPressure, modelName, licenceNumber);
-                    break;
+                    {
+                        vechileDetails.TypeOfEngine = getTypeOfEngineFromClient();
+                        //MOTORCYCLE
+                        break;
+                    }
                 case "3":
-                    createNewTruck(fuelOrElectricAmount, wheelManufacture, currentAirPressure, modelName, licenceNumber);
-                    break;
+                    {
+                        vechileDetails.TypeOfEngine = eTypeOfEngine.Gasoline;
+                        //TRUCK
+                        break;
+                    }
             }
+            
+        }
+        private static eTypeOfEngine getTypeOfEngineFromClient()
+        {
+ 
+            eTypeOfEngine typeOfEngine=eTypeOfEngine.Electric;
+            Console.WriteLine("Choose one of the folowing engine type options:");
+            Console.WriteLine("1.Gasoline\n2.Electric\nYour choise:");
+            string chooseMenu = Console.ReadLine();
+            //Add while
+            switch (chooseMenu)
+            {
+                case "1":
+                    {
+                        typeOfEngine = eTypeOfEngine.Gasoline;
+                        break;
+                    }
+                case "2":
+                    {
+                        break;
+                    }
+            }
+            return typeOfEngine;
+        }
+
+        private static void addNewCarToGarage(VechileDetails i_VechileDetails)
+        {
+            CarDetails carDetails = new CarDetails();
+            carDetails.VechileDetails = i_VechileDetails;
+            Console.WriteLine("Please Enter Number Of Doors: (2,3,4,5)");
+            //Try Prase??
+            carDetails.NumberOfDoors = (eDoors)Enum.Parse(typeof(eDoors), Console.ReadLine());
+            Console.WriteLine("Please Enter Color Of Car: (Blue,White,Black,Gray)");
+            //Try Prase??
+            carDetails.ColorOfCar = (eColor)Enum.Parse(typeof(eColor), Console.ReadLine());
+            VechileFactory.CreateAndInsertVechile(carDetails);
 
         }       
-        private static void createNewCar(eTypeOfEngine i_TypeOfEngine,string i_fuelOrElectricAmount,string i_WheelManufacture,string i_CurrentAirPressure,string i_ModelName,string i_LicenceNumber)
+
+        private static void addNewMotorcycleToGarage(VechileDetails i_VechileDetails)
         {
-            string carColor, numberOfWheels;
-            Console.WriteLine("Enter the car color");
-            carColor = Console.ReadLine();
-            Console.WriteLine("Enter the number of wheels");
-            numberOfWheels = Console.ReadLine();
-            factoryvechile.addCar(i_fuelOrElectricAmount, i_WheelManufacture, i_CurrentAirPressure, i_ModelName, i_LicenceNumber, carColor, numberOfWheels, i_TypeOfEngine);
-        }
+            MotorCycleDetails motorcycleDetails = new MotorCycleDetails();
+            motorcycleDetails.VechileDetails = i_VechileDetails;
+            Console.WriteLine("Please Enter Engine Capacity:");
+            //Try Prase??
+            motorcycleDetails.EngineCapacity = int.Parse(Console.ReadLine());
+            Console.WriteLine("Please Licsene of Motorcycle: (A,A1,B1,B2)");
+            //Try Prase??
+            motorcycleDetails.LicsenseType = (eLicenseType)Enum.Parse(typeof(eLicenseType), Console.ReadLine());
+            VechileFactory.CreateAndInsertVechile(motorcycleDetails);
+
+        } 
+
         private static void createNewMotorcycle(string i_fuelOrElectricAmount, string i_WheelManufacture, string i_CurrentAirPressure, string i_ModelName, string i_LicenceNumber)
         {
             string engineCapacity, motorcylcleLicence;

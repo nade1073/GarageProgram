@@ -40,22 +40,17 @@ namespace Ex03.GarageLogic
             return garageVechileToReturn;
         }
 
-        public bool AddVechileToGarage(Vechile i_VechileToAdd, string i_OwnerName, string i_PhoneOfOwner)
+        public bool AddVechileToGarage(GarageVechile i_VechileToAddToGarage)
         {
             bool isAddedToTheGarage = false;
-            GarageVechile vechileToTheGarage = new GarageVechile();
-            vechileToTheGarage = getVechileByLicenceNumber(i_VechileToAdd.LicenseNumber);
+            GarageVechile vechileToTheGarage = getVechileByLicenceNumber(i_VechileToAddToGarage.OwnerVechile.LicenseNumber);
             if (vechileToTheGarage != null)
             {
                 vechileToTheGarage.CurrentVechileStatus = eVechileStatus.Repair;
             }
             else
             {
-                vechileToTheGarage.OwnerVechile = i_VechileToAdd;
-                vechileToTheGarage.OwnerName = i_OwnerName;
-                vechileToTheGarage.PhoneOfOwner = i_PhoneOfOwner;
-                vechileToTheGarage.CurrentVechileStatus = eVechileStatus.Repair;
-                m_GarageVechiles.Add(vechileToTheGarage);
+                m_GarageVechiles.Add(i_VechileToAddToGarage);
                 isAddedToTheGarage = true;
             }
             return isAddedToTheGarage;         
