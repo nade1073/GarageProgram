@@ -116,8 +116,6 @@ namespace Ex03.ConsoleUI
                 vechileDetails.LicenceNumber = getLicsenceNumberFromClient();
                 Console.WriteLine("Enter the wheel manufacture");
                 vechileDetails.WheelManufacture = Console.ReadLine();
-                Console.WriteLine("Enter Current air pressure of the wheels:");
-                vechileDetails.CurrentAirPressure = Console.ReadLine();
                 Console.WriteLine("Choose one of the folowing options:");
                 Console.WriteLine("1.Car\n2.MotorCycle\n3.Truck\nYour choise:");
                 //Insert Loop 
@@ -135,20 +133,18 @@ namespace Ex03.ConsoleUI
                         }
                     case "2":
                         {
-                            Console.WriteLine("Enter Current air pressure of the wheels:");
-                            vechileDetails.CurrentAirPressure = Console.ReadLine();
                             vechileDetails.TypeOfCar = eTypeOfCar.Motorcycle;
                             vechileDetails.TypeOfEngine = getTypeOfEngineFromClient();
                             vechileDetails.Amount = getAmountFromClient();
+                            vechileDetails.CurrentAirPressure = getAirPressureFromClient();
                             isAdded = addNewMotorcycleToGarage(vechileDetails);
                             break;
                         }
                     case "3":
                         {
-                            Console.WriteLine("Enter Current air pressure of the wheels:");
-                            vechileDetails.CurrentAirPressure = Console.ReadLine();
                             vechileDetails.TypeOfCar = eTypeOfCar.Truck;
                             vechileDetails.TypeOfEngine = eTypeOfEngine.Gasoline;
+                            vechileDetails.CurrentAirPressure = getAirPressureFromClient();
                             isAdded = addNewTruckToGarage(vechileDetails);
                             break;
                         }
@@ -163,7 +159,7 @@ namespace Ex03.ConsoleUI
             
         }
 
-        private float getAirPressureFromClient()
+        private static float getAirPressureFromClient()
         {
            Console.WriteLine("Enter Current air pressure of the wheels:");
            return float.Parse(Console.ReadLine());
