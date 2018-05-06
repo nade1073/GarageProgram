@@ -23,8 +23,21 @@ namespace Ex03.ConsoleUI
                     switch (chooseMenu)
                     {
                         case "1":
-                            bool isVechileAdded = addVechileToGarage();
-                            //OUTPUT isadded false or true???
+                            try
+                            {
+                                if(addVechileToGarage())
+                                {
+                                    Console.WriteLine("Succsses to a add a new car to the garage");
+                                }
+                                else
+                                {
+                                    Console.WriteLine("Change Status repeair of the car");
+                                }
+                            }
+                            catch(ValueOutOfRangeException i_Exception)
+                            {
+                                Console.WriteLine(i_Exception.Message);
+                            }
                             break;
                         case "2":
                             showAllLicenceNumbers();
@@ -319,9 +332,7 @@ namespace Ex03.ConsoleUI
             vechileDetails.LicenceNumber = getLicsenceNumberFromClient();
             Console.WriteLine("Please Enter the Type Of Fuel : (Ocatn95,Ocatn96,Ocatn98,Soler2)");
             vechileDetails.TypeOfFuel = (eTypeOfFuel)Enum.Parse(typeof(eTypeOfFuel), Console.ReadLine());
-            //Try Prase??
             Console.WriteLine("Please Enter the amount of fuel to add\n");
-            //Try Prase??
             vechileDetails.Amount = float.Parse(Console.ReadLine());
             return Garage.Instance.AddFuelToGasolineEngine(vechileDetails);
       
