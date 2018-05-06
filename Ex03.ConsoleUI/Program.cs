@@ -179,26 +179,15 @@ namespace Ex03.ConsoleUI
                             isAdded = addNewTruckToGarage(vechileDetails);
                             break;
                         }
-                default:
-<<<<<<< HEAD
+                    default:
                         {
                             Console.WriteLine("Wrong Input Entered, Please Try Again");
                             chooseMenu = Console.ReadLine();
+                            correctInputEntered = true;
                             break;
                         }
                 }
-            }
-=======
-                    Console.WriteLine("Wrong Input Entered, Please Try Again");
-                        chooseMenu = Console.ReadLine();
-                        correctInputEntered = true;
-                        break;
-                       
-                }
             } while (correctInputEntered) ;
-
-
->>>>>>> 4daa66ffad6dc861a78e9a7198f59577bc3d974b
             return isAdded;
             
         }
@@ -242,18 +231,13 @@ namespace Ex03.ConsoleUI
                             break;
                         }
                     default:
-<<<<<<< HEAD
                         {
+
                             Console.WriteLine("Wrong Input Entered, Please Try Again");
                             chooseMenu = Console.ReadLine();
+                            correctInputEntered = true;
                             break;
                         }
-=======
-                        Console.WriteLine("Wrong Input Entered, Please Try Again");
-                        chooseMenu = Console.ReadLine();
-                        correctInputEntered = true;
-                        break;
->>>>>>> 4daa66ffad6dc861a78e9a7198f59577bc3d974b
                 }
             } while (correctInputEntered);
             return typeOfEngine;
@@ -326,18 +310,12 @@ namespace Ex03.ConsoleUI
                     case "3":
                         break;
                     default:
-<<<<<<< HEAD
                         {
                             Console.WriteLine("Wrong Input Entered, Please Try Again");
                             outputStatusFilter = Console.ReadLine();
+                            correctInputEntered = true;
                             break;
-                        }
-=======
-                        Console.WriteLine("Wrong Input Entered, Please Try Again");
-                        outputStatusFilter = Console.ReadLine();
-                        correctInputEntered = true;
-                        break;
->>>>>>> 4daa66ffad6dc861a78e9a7198f59577bc3d974b
+                        }    
                 }
             } while (correctInputEntered);
             vechilesLicenceNumbers = Garage.Instance.ShowVechilesLicenceNumbersInGarage(statusToFilterVechiles);
