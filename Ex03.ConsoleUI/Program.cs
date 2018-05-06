@@ -6,7 +6,7 @@ namespace Ex03.ConsoleUI
 {
     class Program
     {
-        static void Main(string[] args)
+        static void Main()
         {
             eContinueOrExit continueProgram =eContinueOrExit.Continue;
             Console.WriteLine("Wellcom To The Garage Program designed by : Nadav Shalev & Ben Magriso\nMenu: -Choose one of the folowing options-");
@@ -106,8 +106,6 @@ namespace Ex03.ConsoleUI
             bool isAdded = false;
             try
             {
-
-
                 VechileDetails vechileDetails = new VechileDetails();
                 Console.WriteLine("Enter Owner name:");
                 vechileDetails.OwnerName = Console.ReadLine();
@@ -129,12 +127,14 @@ namespace Ex03.ConsoleUI
                     case "1":
                         {
                             vechileDetails.TypeOfEngine = getTypeOfEngineFromClient();
+                            vechileDetails.Amount = getAmountFromClient();
                             isAdded = addNewCarToGarage(vechileDetails);
                             break;
                         }
                     case "2":
                         {
                             vechileDetails.TypeOfEngine = getTypeOfEngineFromClient();
+                            vechileDetails.Amount = getAmountFromClient();
                             isAdded = addNewMotorcycleToGarage(vechileDetails);
                             break;
                         }
@@ -154,6 +154,13 @@ namespace Ex03.ConsoleUI
             return isAdded;
             
         }
+
+        private static float getAmountFromClient()
+        {
+            Console.WriteLine("Enter The Amount of the Container of the engine:");
+            return float.Parse(Console.ReadLine());
+        }
+
         private static eTypeOfEngine getTypeOfEngineFromClient()
         {
  

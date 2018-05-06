@@ -32,14 +32,14 @@ namespace Ex03.GarageLogic
             }
         }
 
-        protected void InitializeElectricEngine(float i_MaxCapacityOfContainer)
+        protected void InitializeElectricEngine(float i_AmountOfContainer,float i_MaxCapacityOfContainer)
         {
-            EngineOfVechile = new ElectricEngine(i_MaxCapacityOfContainer);
+            EngineOfVechile = new ElectricEngine(i_AmountOfContainer,i_MaxCapacityOfContainer);
         }
 
-        protected void InitializeGasolineEngine(eTypeOfFuel i_TypeOfFuel,float i_MaxCapacityOfContainer)
+        protected void InitializeGasolineEngine(float i_AmountOfContainer,eTypeOfFuel i_TypeOfFuel,float i_MaxCapacityOfContainer)
         {
-            EngineOfVechile = new GasolineEngine(i_MaxCapacityOfContainer, i_TypeOfFuel);
+            EngineOfVechile = new GasolineEngine(i_AmountOfContainer,i_MaxCapacityOfContainer, i_TypeOfFuel);
         }
 
         public string ModelName

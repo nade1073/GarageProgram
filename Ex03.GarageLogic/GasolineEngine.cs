@@ -7,9 +7,10 @@ namespace Ex03.GarageLogic
         private eTypeOfFuel m_FuelType;
         private float m_Amount;
 
-        public GasolineEngine(float i_MaxCapacityOfContainer, eTypeOfFuel i_FuelType) : base(i_MaxCapacityOfContainer)
+        public GasolineEngine(float i_Amount,float i_MaxCapacityOfContainer, eTypeOfFuel i_FuelType) : base(i_MaxCapacityOfContainer)
         {
             FuelType = i_FuelType;
+            Amount = i_Amount;
         }
 
         public GasolineEngine(eTypeOfFuel i_FuelType,float i_AmountOfFuel):base (0)

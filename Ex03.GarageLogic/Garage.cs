@@ -121,8 +121,7 @@ namespace Ex03.GarageLogic
             GarageVechile garageVechileInList = getVechileByLicenceNumber(i_VechileDetails.LicenceNumber);
             if (garageVechileInList != null)
             {
-                ElectricEngine electricToAdd = new ElectricEngine();
-                electricToAdd.Battery = i_VechileDetails.Amount;
+                ElectricEngine electricToAdd = new ElectricEngine(i_VechileDetails.Amount);
                 garageVechileInList.OwnerVechile.EngineOfVechile.FillTheContainer(electricToAdd);
                 isAdded = true;
             }

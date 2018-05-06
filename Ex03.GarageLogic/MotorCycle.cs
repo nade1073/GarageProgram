@@ -11,7 +11,7 @@ namespace Ex03.GarageLogic
         private const float k_MaxCapacityOfElectricEngine = 1.8f;
         private const float k_MaxCapacityOfGasolineEngine = 6;
 
-        public MotorCycle(string i_ModelName, string i_LicenseNumber, eLicenseType i_LicsenseType, int i_EngineCapacity, eTypeOfEngine i_TypeOfEngine) : 
+        public MotorCycle(string i_ModelName, string i_LicenseNumber, eLicenseType i_LicsenseType, int i_EngineCapacity, eTypeOfEngine i_TypeOfEngine, float i_AmountOfContainer) : 
             base(i_ModelName, i_LicenseNumber, k_NumberOfWheelsOfMotorCycle, k_MaxAirPressureOfWheelOfMotorCycle)
         {
             MotorcycleProperties = new MotorcycleProperties(i_EngineCapacity, i_LicsenseType);
@@ -19,12 +19,12 @@ namespace Ex03.GarageLogic
             {
                 case eTypeOfEngine.Electric:
                     {
-                        InitializeElectricEngine(k_MaxCapacityOfElectricEngine);
+                        InitializeElectricEngine(i_AmountOfContainer,k_MaxCapacityOfElectricEngine);
                         break;
                     }
                 case eTypeOfEngine.Gasoline:
                     {
-                        InitializeGasolineEngine(eTypeOfFuel.Ocatn96,k_MaxCapacityOfGasolineEngine);
+                        InitializeGasolineEngine(i_AmountOfContainer,eTypeOfFuel.Ocatn96,k_MaxCapacityOfGasolineEngine);
                         break;
                     }
             }

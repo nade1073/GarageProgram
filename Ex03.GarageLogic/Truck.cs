@@ -10,11 +10,11 @@ namespace Ex03.GarageLogic
         private const int k_MaxAirPressureOfWheelOfTruck = 28;
         private const int k_FuelContainerOfTruck = 115;
 
-        public Truck(string i_ModelName, string i_LicenseNumber, bool i_IsTheTrunkCooled, float i_CargoCapacity) : 
+        public Truck(string i_ModelName, string i_LicenseNumber, bool i_IsTheTrunkCooled, float i_CargoCapacity,float i_AmountOfContainer) : 
             base(i_ModelName, i_LicenseNumber, k_NumberOfWheelsOfTruck, k_MaxAirPressureOfWheelOfTruck)
         {
             TruckProperties = new TruckProperties(i_IsTheTrunkCooled, i_CargoCapacity);
-            InitializeGasolineEngine(eTypeOfFuel.Soler,k_FuelContainerOfTruck);
+            InitializeGasolineEngine(i_AmountOfContainer,eTypeOfFuel.Soler,k_FuelContainerOfTruck);
         }
 
         public TruckProperties TruckProperties
