@@ -98,7 +98,6 @@ namespace Ex03.GarageLogic
                 missingAirPressure = maxAirPressure - currentAirPressure;
                 garageVechileInList.OwnerVechile.WheelInflating(missingAirPressure);
                 isAdded = true;
-
             }
             return isAdded;
         }

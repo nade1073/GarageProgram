@@ -39,46 +39,55 @@ namespace Ex03.ConsoleUI
                             }
                             break;
                         case "2":
-                            showAllLicenceNumbers();
-                            break;
+                            {
+                                showAllLicenceNumbers();
+                                break;
+                            }
                         case "3":
-                            try
-                            {
-                                bool isChanged = changeStatusOfVechileInGarage();
-                                //OUTPUT isadded false or true???
+                            { 
+                                if(changeStatusOfVechileInGarage())
+                                {
+                                    Console.WriteLine("Succsses to a change status");
+                                }
+                                else
+                                {
+                                    Console.WriteLine("Not found vechie");
+                                }
+                                break;
                             }
-                            catch (ArgumentException exception)
-                            {
-                                //Message argument exception!! (Of Parse)
-                            }
-                            break;
+
                         case "4":
-                            bool isInfalteAirToWheels = false;
                             try
                             {
-                                isInfalteAirToWheels = inflateAirInTheWheelsToMaximum();
-                                //PRINT isAdded
+                                if(inflateAirInTheWheelsToMaximum())
+                                {
+                                    Console.WriteLine("Succsses to a add Air in The Wheels");
+                                }
+                                else
+                                {
+                                    Console.WriteLine("Not found vechie to add a air");
+                                }
                             }
                             catch (ValueOutOfRangeException exception)
                             {
-                                //exception.Message; PRINT HerE??
+                                Console.WriteLine(exception.Message);
                             }
-                            //OUTPUT isadded false or true???
                             break;
                         case "5":
                             try
                             {
-                                bool isAddedFuelToCar = false;
-                                isAddedFuelToCar = addGasolineFuelToCar();
-                                //message = "Sucsses To add";
-                            }
-                            catch (ArgumentException exception)
-                            {
-                                //message = exception.Message;??
+                                if(addGasolineFuelToCar())
+                                {
+                                    Console.WriteLine("Succsses to a add Fuel to the Vechile");
+                                }
+                                else
+                                {
+                                    Console.WriteLine("Not found vechie to add a fuel");
+                                }
                             }
                             catch (ValueOutOfRangeException exception)
                             {
-                                //message = exception.Message;??
+                                Console.WriteLine(exception.Message);
                             }
                             break;
                         case "6":
@@ -86,10 +95,6 @@ namespace Ex03.ConsoleUI
                             {
                                 chargeElectricCar();
                                 //message = "Sucsses To add";
-                            }
-                            catch (ArgumentException exception)
-                            {
-                                //message = exception.Message;??
                             }
                             catch (ValueOutOfRangeException exception)
                             {
@@ -106,7 +111,7 @@ namespace Ex03.ConsoleUI
                 }
                 catch(ArgumentException i_Exception)
                 {
-                    Console.WriteLine("Invalid Input entred");
+                    Console.WriteLine(i_Exception.Message);
                 }
                 Console.WriteLine("Please Enter 'Continue' if you want to continue or 'Exit' if you want to Exit");
                 bool isValidInput = false;
@@ -175,14 +180,13 @@ namespace Ex03.ConsoleUI
                             break;
                         }
                 default:
-                    Console.WriteLine("Wrong Input Entered, Please Try Again");
-                        chooseMenu = Console.ReadLine();
-                        break;
-                       
+                        {
+                            Console.WriteLine("Wrong Input Entered, Please Try Again");
+                            chooseMenu = Console.ReadLine();
+                            break;
+                        }
                 }
             }
-
-
             return isAdded;
             
         }
@@ -222,9 +226,11 @@ namespace Ex03.ConsoleUI
                             break;
                         }
                     default:
-                        Console.WriteLine("Wrong Input Entered, Please Try Again");
-                        chooseMenu = Console.ReadLine();
-                        break;
+                        {
+                            Console.WriteLine("Wrong Input Entered, Please Try Again");
+                            chooseMenu = Console.ReadLine();
+                            break;
+                        }
                 }
             }
             return typeOfEngine;
@@ -296,9 +302,11 @@ namespace Ex03.ConsoleUI
                     case "3":
                         break;
                     default:
-                        Console.WriteLine("Wrong Input Entered, Please Try Again");
-                        outputStatusFilter = Console.ReadLine();
-                        break;
+                        {
+                            Console.WriteLine("Wrong Input Entered, Please Try Again");
+                            outputStatusFilter = Console.ReadLine();
+                            break;
+                        }
                 }
             } 
             vechilesLicenceNumbers = Garage.Instance.ShowVechilesLicenceNumbersInGarage(statusToFilterVechiles);
