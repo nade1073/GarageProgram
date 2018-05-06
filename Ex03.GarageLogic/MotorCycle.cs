@@ -19,12 +19,12 @@ namespace Ex03.GarageLogic
             {
                 case eTypeOfEngine.Electric:
                     {
-                        initializeElectricEngine(k_MaxCapacityOfElectricEngine);
+                        InitializeElectricEngine(k_MaxCapacityOfElectricEngine);
                         break;
                     }
                 case eTypeOfEngine.Gasoline:
                     {
-                        initializeGasolineEngine(eTypeOfFuel.Ocatn96,k_MaxCapacityOfGasolineEngine);
+                        InitializeGasolineEngine(eTypeOfFuel.Ocatn96,k_MaxCapacityOfGasolineEngine);
                         break;
                     }
             }

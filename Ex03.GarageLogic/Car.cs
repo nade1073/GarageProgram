@@ -19,12 +19,12 @@ namespace Ex03.GarageLogic
             {
                 case eTypeOfEngine.Electric:
                     {
-                        initializeElectricEngine(k_MaxOfContainerOfElectricEngine);
+                        InitializeElectricEngine(k_MaxOfContainerOfElectricEngine);
                         break;
                     }
                 case eTypeOfEngine.Gasoline:
                     {
-                        initializeGasolineEngine(eTypeOfFuel.Ocatn98, k_MaxOfContainerOfGasolineEngine);
+                        InitializeGasolineEngine(eTypeOfFuel.Ocatn98, k_MaxOfContainerOfGasolineEngine);
                         break;
                     }
             }
@@ -38,7 +38,7 @@ namespace Ex03.GarageLogic
             }
             set
             {
-                CarProperties = value;
+                m_CarProperties = value;
             }
         }
 

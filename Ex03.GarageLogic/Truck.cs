@@ -14,7 +14,7 @@ namespace Ex03.GarageLogic
             base(i_ModelName, i_LicenseNumber, k_NumberOfWheelsOfTruck, k_MaxAirPressureOfWheelOfTruck)
         {
             TruckProperties = new TruckProperties(i_IsTheTrunkCooled, i_CargoCapacity);
-            initializeGasolineEngine(eTypeOfFuel.Soler,k_FuelContainerOfTruck);
+            InitializeGasolineEngine(eTypeOfFuel.Soler,k_FuelContainerOfTruck);
         }
 
         public TruckProperties TruckProperties

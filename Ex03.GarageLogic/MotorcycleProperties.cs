@@ -42,6 +42,7 @@ namespace Ex03.GarageLogic
                 m_LicsenseType = value;
             }
         }
+
 		public override string ToString()
 		{
             return String.Format("Engine Capacity: {0},Type of Licsense: {1}", EngineCapacity, LicsenseType.ToString());
