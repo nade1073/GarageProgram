@@ -1,16 +1,15 @@
-﻿using System;
-
-namespace Ex03.GarageLogic
+﻿namespace Ex03.GarageLogic
 {
+    using System;
+
     public class ElectricEngine : Engine
     {
         private float m_Battery;
 
-        public ElectricEngine(float i_Battery,float i_MaxCapacityOfContainer=0) : base(i_MaxCapacityOfContainer)
+        public ElectricEngine(float i_Battery, float i_MaxCapacityOfContainer = 0) : base(i_MaxCapacityOfContainer)
         {
             Battery = i_Battery;
         }
-
 
         public float Battery
         {
@@ -22,7 +21,7 @@ namespace Ex03.GarageLogic
             set
             {
                 m_Battery = value;
-                PercentageOfEnergyRemaining = m_Battery / MaxCapacityOfContainer;
+                base.PercentageOfEnergyRemaining = m_Battery / MaxCapacityOfContainer;
             }
         }
 
@@ -31,7 +30,6 @@ namespace Ex03.GarageLogic
             ElectricEngine containerToFill = i_EnergyToAddToTheContainer as ElectricEngine;
             if (containerToFill != null)
             {
-
                 float maxFuelToAdd = MaxCapacityOfContainer - Battery;
                 if (containerToFill.Battery > maxFuelToAdd)
                 {
@@ -50,7 +48,7 @@ namespace Ex03.GarageLogic
 
         public override string ToString()
         {
-            return String.Format("Type Of Engine: {0} ,Current of Battery: {1} ,Max capacity:{2} ", eTypeOfEngine.Electric.ToString(), Battery, MaxCapacityOfContainer);
+            return string.Format("Type Of Engine: {0} ,Current of Battery: {1} ,Max capacity:{2} ", eTypeOfEngine.Electric.ToString(), Battery, MaxCapacityOfContainer);
         }
     }
 }

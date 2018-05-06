@@ -10,6 +10,7 @@
             {
                 return m_VechileDetails;
             }
+
             set
             {
                 m_VechileDetails = value;

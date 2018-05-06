@@ -1,5 +1,4 @@
-﻿using System;
-namespace Ex03.GarageLogic
+﻿namespace Ex03.GarageLogic
 {
     public class MotorCycleDetails : Details
     {
@@ -11,12 +10,11 @@ namespace Ex03.GarageLogic
             {
                 return m_MotorcycleProperties;
             }
+
             set
             {
                 m_MotorcycleProperties = value;
             }
-        }
-    
-        
+        }   
     }
 }
