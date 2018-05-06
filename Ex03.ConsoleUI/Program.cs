@@ -74,7 +74,7 @@
                                 }
                                 catch (ValueOutOfRangeException exception)
                                 {
-                                    Console.WriteLine(exception.Message);
+                                    Console.WriteLine("ValueOutOfRange Exception");
                                 }
 
                                 break;
