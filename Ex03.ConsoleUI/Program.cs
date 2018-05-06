@@ -1,14 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using Ex03.GarageLogic;
-
-namespace Ex03.ConsoleUI
+﻿namespace Ex03.ConsoleUI
 {
-    class Program
+    using System;
+    using System.Collections.Generic;
+    using Ex03.GarageLogic;
+
+    public class Program
     {
-        static void Main()
+        public static void Main()
         {
-            eContinueOrExit continueProgram =eContinueOrExit.Continue;
+            eContinueOrExit continueProgram = eContinueOrExit.Continue;
             while (continueProgram.Equals(eContinueOrExit.Continue))
             {
                 Console.WriteLine("Wellcom To The Garage Program designed by : Nadav Shalev & Ben Magriso\nMenu: -Choose one of the folowing options-");
@@ -24,7 +24,7 @@ namespace Ex03.ConsoleUI
                         case "1":
                             try
                             {
-                                if(addVechileToGarage())
+                                if (addVechileToGarage())
                                 {
                                     Console.WriteLine("Succsses to a add a new car to the garage");
                                 }
@@ -33,19 +33,21 @@ namespace Ex03.ConsoleUI
                                     Console.WriteLine("Change Status repeair of the car");
                                 }
                             }
-                            catch(ValueOutOfRangeException i_Exception)
+                            catch (ValueOutOfRangeException i_Exception)
                             {
                                 Console.WriteLine(i_Exception.Message);
                             }
+
                             break;
                         case "2":
                             {
                                 showAllLicenceNumbers();
                                 break;
                             }
+
                         case "3":
                             { 
-                                if(changeStatusOfVechileInGarage())
+                                if (changeStatusOfVechileInGarage())
                                 {
                                     Console.WriteLine("Succsses to a change status");
                                 }
@@ -53,73 +55,88 @@ namespace Ex03.ConsoleUI
                                 {
                                     Console.WriteLine("Not found vechie");
                                 }
+
                                 break;
                             }
 
                         case "4":
-                            try
                             {
-                                if(inflateAirInTheWheelsToMaximum())
+                                try
                                 {
-                                    Console.WriteLine("Succsses to a add Air in The Wheels");
+                                    if (inflateAirInTheWheelsToMaximum())
+                                    {
+                                        Console.WriteLine("Succsses to a add Air in The Wheels");
+                                    }
+                                    else
+                                    {
+                                        Console.WriteLine("Not found vechie to add a air");
+                                    }
                                 }
-                                else
+                                catch (ValueOutOfRangeException exception)
                                 {
-                                    Console.WriteLine("Not found vechie to add a air");
+                                    Console.WriteLine(exception.Message);
                                 }
+
+                                break;
                             }
-                            catch (ValueOutOfRangeException exception)
-                            {
-                                Console.WriteLine(exception.Message);
-                            }
-                            break;
+
                         case "5":
-                            try
                             {
-                                if(addGasolineFuelToCar())
+                                try
                                 {
-                                    Console.WriteLine("Succsses to a add Fuel to the Vechile");
+                                    if (addGasolineFuelToCar())
+                                    {
+                                        Console.WriteLine("Succsses to a add Fuel to the Vechile");
+                                    }
+                                    else
+                                    {
+                                        Console.WriteLine("Not found vechie to add a fuel");
+                                    }
                                 }
-                                else
+                                catch (ValueOutOfRangeException i_Exception)
                                 {
-                                    Console.WriteLine("Not found vechie to add a fuel");
+                                    Console.WriteLine(i_Exception.Message);
                                 }
+
+                                break;
                             }
-                            catch (ValueOutOfRangeException i_Exception)
-                            {
-                                Console.WriteLine(i_Exception.Message);
-                            }
-                            break;
+
                         case "6":
-                            try
                             {
-                                ;
-                                if (chargeElectricCar())
+                                try
                                 {
-                                    Console.WriteLine("Succsses to charge to electric Container");
+                                    if (chargeElectricCar())
+                                    {
+                                        Console.WriteLine("Succsses to charge to electric Container");
+                                    }
+                                    else
+                                    {
+                                        Console.WriteLine("Not found vechie to charge");
+                                    }
                                 }
-                                else
+                                catch (ValueOutOfRangeException i_Exception)
                                 {
-                                    Console.WriteLine("Not found vechie to charge");
+                                    Console.WriteLine(i_Exception.Message);
                                 }
                             }
-                            catch (ValueOutOfRangeException i_Exception)
-                            {
-                                Console.WriteLine(i_Exception.Message);
-                            }
+
                             break;
                         case "7":
-                            printAllCarDetails();
-                            break;
+                            {
+                                printAllCarDetails();
+                                break;
+                            }
+
                         default:
                             Console.WriteLine("Wrong Input Entered");
                             break;
                     }
                 }
-                catch(ArgumentException i_Exception)
+                catch (ArgumentException i_Exception)
                 {
                     Console.WriteLine(i_Exception.Message);
                 }
+
                 Console.WriteLine("Please Enter 'Continue' if you want to continue or 'Exit' if you want to Exit");
                 bool isValidInput = false;
                 while (!isValidInput)
@@ -129,7 +146,7 @@ namespace Ex03.ConsoleUI
                         continueProgram = (eContinueOrExit)Enum.Parse(typeof(eContinueOrExit), Console.ReadLine());
                         isValidInput = true;
                     }
-                    catch(ArgumentException i_Exception)
+                    catch (ArgumentException i_Exception)
                     {
                         Console.WriteLine(i_Exception.Message);
                     }
@@ -137,7 +154,6 @@ namespace Ex03.ConsoleUI
             }
        }
         
-
         private static bool addVechileToGarage()
         {
                 bool isAdded = false;
@@ -169,6 +185,7 @@ namespace Ex03.ConsoleUI
                             isAdded = addNewCarToGarage(vechileDetails);
                             break;
                         }
+
                     case "2":
                         {
                             vechileDetails.TypeOfCar = eTypeOfCar.Motorcycle;
@@ -178,6 +195,7 @@ namespace Ex03.ConsoleUI
                             isAdded = addNewMotorcycleToGarage(vechileDetails);
                             break;
                         }
+
                     case "3":
                         {
                             vechileDetails.TypeOfCar = eTypeOfCar.Truck;
@@ -186,6 +204,7 @@ namespace Ex03.ConsoleUI
                             isAdded = addNewTruckToGarage(vechileDetails);
                             break;
                         }
+
                     default:
                         {
                             Console.WriteLine("Wrong Input Entered, Please Try Again");
@@ -194,9 +213,9 @@ namespace Ex03.ConsoleUI
                             break;
                         }
                 }
-            } while (correctInputEntered) ;
-            return isAdded;
-            
+            }
+            while (correctInputEntered);
+            return isAdded; 
         }
 
         private static float getAirPressureFromClient()
@@ -214,12 +233,10 @@ namespace Ex03.ConsoleUI
         private static eTypeOfEngine getTypeOfEngineFromClient()
         {
             bool correctInputEntered = false;
-            eTypeOfEngine typeOfEngine=eTypeOfEngine.Electric;
+            eTypeOfEngine typeOfEngine = eTypeOfEngine.Electric;
             Console.WriteLine("Choose one of the folowing engine type options:");
             Console.WriteLine("1.Gasoline\n2.Electric\nYour choise:");
             string chooseMenu = Console.ReadLine();
-
-
             do
             {
                 correctInputEntered = false;
@@ -231,22 +248,24 @@ namespace Ex03.ConsoleUI
                             typeOfEngine = eTypeOfEngine.Gasoline;
                             break;
                         }
+
                     case "2":
                         {
                             correctInputEntered = false;
                             typeOfEngine = eTypeOfEngine.Electric;
                             break;
                         }
+
                     default:
                         {
-
                             Console.WriteLine("Wrong Input Entered, Please Try Again");
                             chooseMenu = Console.ReadLine();
                             correctInputEntered = true;
                             break;
                         }
                 }
-            } while (correctInputEntered);
+            }
+            while (correctInputEntered);
             return typeOfEngine;
         }
 
@@ -261,7 +280,6 @@ namespace Ex03.ConsoleUI
             carProperties.ColorOfTheCar = (eColor)Enum.Parse(typeof(eColor), Console.ReadLine());
             carDetails.CarProperties = carProperties;
             return VechileFactory.CreateAndInsertVechile(carDetails);
-
         }       
 
         private static bool addNewMotorcycleToGarage(VechileDetails i_VechileDetails)
@@ -275,7 +293,6 @@ namespace Ex03.ConsoleUI
             motorcycleProperties.LicsenseType = (eLicenseType)Enum.Parse(typeof(eLicenseType), Console.ReadLine());
             motorcycleDetails.MotorcycleProperties = motorcycleProperties;
             return VechileFactory.CreateAndInsertVechile(motorcycleDetails);
-
         } 
 
         private static bool addNewTruckToGarage(VechileDetails i_VechileDetails)
@@ -286,10 +303,9 @@ namespace Ex03.ConsoleUI
             Console.WriteLine("Please Enter The Cargo Capacity:");
             truckProperties.CargoCapacity = float.Parse(Console.ReadLine());
             Console.WriteLine("Please eneter if the Trunk of the truck is cooled: (True,False)");
-            truckProperties.IsTheTrunkCooled = Boolean.Parse(Console.ReadLine());
+            truckProperties.IsTheTrunkCooled = bool.Parse(Console.ReadLine());
             truckDetails.TruckProperties = truckProperties;
             return VechileFactory.CreateAndInsertVechile(truckDetails);
-
         }
 
         private static void showAllLicenceNumbers()
@@ -324,7 +340,8 @@ namespace Ex03.ConsoleUI
                             break;
                         }    
                 }
-            } while (correctInputEntered);
+            }
+            while (correctInputEntered);
             vechilesLicenceNumbers = Garage.Instance.ShowVechilesLicenceNumbersInGarage(statusToFilterVechiles);
             printList(vechilesLicenceNumbers);
         }
@@ -335,7 +352,7 @@ namespace Ex03.ConsoleUI
             foreach (string currentItem in i_ListToPrint)
             {
                 i++;
-                Console.WriteLine(String.Format("{0}.{1}",i,currentItem));
+                Console.WriteLine(string.Format("{0}.{1}", i, currentItem));
             }
         }
 
@@ -363,9 +380,9 @@ namespace Ex03.ConsoleUI
             vechileDetails.TypeOfFuel = (eTypeOfFuel)Enum.Parse(typeof(eTypeOfFuel), Console.ReadLine());
             Console.WriteLine("Please Enter the amount of fuel to add\n");
             vechileDetails.Amount = float.Parse(Console.ReadLine());
-            return Garage.Instance.AddFuelToGasolineEngine(vechileDetails);
-      
+            return Garage.Instance.AddFuelToGasolineEngine(vechileDetails);      
         }
+
         private static bool chargeElectricCar()
         {
             VechileDetails vechileDetails = new VechileDetails();
@@ -374,13 +391,15 @@ namespace Ex03.ConsoleUI
             vechileDetails.Amount = float.Parse(Console.ReadLine());
             return Garage.Instance.ChargeElectricEngine(vechileDetails);
         }
+
         private static void printAllCarDetails()
         { 
             VechileDetails vechileDetails = new VechileDetails();
             vechileDetails.LicenceNumber = getLicsenceNumberFromClient();
-            String message = Garage.Instance.GetCarDetails(vechileDetails);
+            string message = Garage.Instance.GetCarDetails(vechileDetails);
             Console.WriteLine(message);
         }
+
         private static String getLicsenceNumberFromClient()
         {
             Console.WriteLine("Enter the licence number of the vechile");
