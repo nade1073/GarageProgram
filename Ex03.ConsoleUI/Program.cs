@@ -134,7 +134,7 @@ namespace Ex03.ConsoleUI
         private static bool addVechileToGarage()
         {
                 bool isAdded = false;
-                bool correctInputEntered = true;
+                bool correctInputEntered = false;
                 VechileDetails vechileDetails = new VechileDetails();
                 Console.WriteLine("Enter Owner name:");
                 vechileDetails.OwnerName = Console.ReadLine();
@@ -147,10 +147,10 @@ namespace Ex03.ConsoleUI
                 vechileDetails.WheelManufacture = Console.ReadLine();
                 Console.WriteLine("Choose one of the folowing options:");
                 Console.WriteLine("1.Car\n2.MotorCycle\n3.Truck\nYour choise:");
-               
-            while(correctInputEntered)
+            string chooseMenu = Console.ReadLine();
+            do
             {
-                string chooseMenu = Console.ReadLine();
+                correctInputEntered = false;
                 switch (chooseMenu)
                 {
                     case "1":
@@ -180,6 +180,7 @@ namespace Ex03.ConsoleUI
                             break;
                         }
                 default:
+<<<<<<< HEAD
                         {
                             Console.WriteLine("Wrong Input Entered, Please Try Again");
                             chooseMenu = Console.ReadLine();
@@ -187,6 +188,17 @@ namespace Ex03.ConsoleUI
                         }
                 }
             }
+=======
+                    Console.WriteLine("Wrong Input Entered, Please Try Again");
+                        chooseMenu = Console.ReadLine();
+                        correctInputEntered = true;
+                        break;
+                       
+                }
+            } while (correctInputEntered) ;
+
+
+>>>>>>> 4daa66ffad6dc861a78e9a7198f59577bc3d974b
             return isAdded;
             
         }
@@ -205,34 +217,45 @@ namespace Ex03.ConsoleUI
 
         private static eTypeOfEngine getTypeOfEngineFromClient()
         {
-            bool correctInputEntered = true;
+            bool correctInputEntered = false;
             eTypeOfEngine typeOfEngine=eTypeOfEngine.Electric;
             Console.WriteLine("Choose one of the folowing engine type options:");
             Console.WriteLine("1.Gasoline\n2.Electric\nYour choise:");
             string chooseMenu = Console.ReadLine();
 
 
-            while (correctInputEntered)
+            do
             {
+                correctInputEntered = false;
                 switch (chooseMenu)
                 {
                     case "1":
                         {
+                            correctInputEntered = false;
                             typeOfEngine = eTypeOfEngine.Gasoline;
                             break;
                         }
                     case "2":
                         {
+                            correctInputEntered = false;
+                            typeOfEngine = eTypeOfEngine.Electric;
                             break;
                         }
                     default:
+<<<<<<< HEAD
                         {
                             Console.WriteLine("Wrong Input Entered, Please Try Again");
                             chooseMenu = Console.ReadLine();
                             break;
                         }
+=======
+                        Console.WriteLine("Wrong Input Entered, Please Try Again");
+                        chooseMenu = Console.ReadLine();
+                        correctInputEntered = true;
+                        break;
+>>>>>>> 4daa66ffad6dc861a78e9a7198f59577bc3d974b
                 }
-            }
+            } while (correctInputEntered);
             return typeOfEngine;
         }
 
@@ -280,14 +303,15 @@ namespace Ex03.ConsoleUI
 
         private static void showAllLicenceNumbers()
         {
-            bool correctInputEntered = true;
+            bool correctInputEntered = false;
             List<string> vechilesLicenceNumbers = new List<string>();
             eVechileStatus? statusToFilterVechiles = null;
             string outputStatusFilter;
             Console.WriteLine("Filter With status of: Enter '0' to Repair,Enter '1' to Fixed,Enter '2' to Paid,Enter '3' to not filter with anything\n");
             outputStatusFilter = Console.ReadLine();
-            while (correctInputEntered)
+            do
             {
+                correctInputEntered = false;
                 switch (outputStatusFilter)
                 {
                     case "0":
@@ -302,13 +326,20 @@ namespace Ex03.ConsoleUI
                     case "3":
                         break;
                     default:
+<<<<<<< HEAD
                         {
                             Console.WriteLine("Wrong Input Entered, Please Try Again");
                             outputStatusFilter = Console.ReadLine();
                             break;
                         }
+=======
+                        Console.WriteLine("Wrong Input Entered, Please Try Again");
+                        outputStatusFilter = Console.ReadLine();
+                        correctInputEntered = true;
+                        break;
+>>>>>>> 4daa66ffad6dc861a78e9a7198f59577bc3d974b
                 }
-            } 
+            } while (correctInputEntered);
             vechilesLicenceNumbers = Garage.Instance.ShowVechilesLicenceNumbersInGarage(statusToFilterVechiles);
             printList(vechilesLicenceNumbers);
         }
