@@ -63,12 +63,12 @@ namespace Ex03.GarageLogic
             {
                 if (i_StatusToFilterVechiles == null)
                 {
-                    vechilesLicenceNumbers.Add(currentVechile.ToString());
+                    vechilesLicenceNumbers.Add(currentVechile.OwnerVechile.LicenseNumber.ToString());
                 }
 
                 else if (currentVechile.CurrentVechileStatus == i_StatusToFilterVechiles)
                 {
-                    vechilesLicenceNumbers.Add(currentVechile.ToString());
+                    vechilesLicenceNumbers.Add(currentVechile.OwnerVechile.LicenseNumber.ToString());
                 }
             }
             return vechilesLicenceNumbers;

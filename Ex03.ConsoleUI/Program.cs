@@ -8,84 +8,98 @@ namespace Ex03.ConsoleUI
     {
         static void Main(string[] args)
         {
+            eContinueOrExit continueProgram =eContinueOrExit.Continue;
             Console.WriteLine("Wellcom To The Garage Program designed by : Nadav Shalev & Ben Magriso\nMenu: -Choose one of the folowing options-");
             Console.WriteLine("1.Add a new vechile to the garage.\n2.Show all the licence numbers in the garage.");
             Console.WriteLine("3.Change the status of the vechile\n4.Inflate air in the wheels to the maximum");
             Console.WriteLine("5.Add fuel to Gasoline Engine Car.\n6.Charge Electric car write");
             Console.WriteLine("7.Show all the cars details inside the gargae\nYour choise:");
             string chooseMenu = Console.ReadLine();
-            //EnterALoop//
-            //ArgumentException on all the switch???
-            switch (chooseMenu) 
+
+            while (continueProgram.Equals(eContinueOrExit.Continue))
             {
-                case "1":
-                    bool isVechileAdded=addVechileToGarage();
-                    //OUTPUT isadded false or true???
-                    break;
-                case "2":
-                    showAllLicenceNumbers();
-                    break;
-                case "3":
-                    try
-                    {
-                        bool isChanged = changeStatusOfVechileInGarage(); 
+                //ArgumentException on all the switch???
+                switch (chooseMenu)
+                {
+                    case "1":
+                        bool isVechileAdded = addVechileToGarage();
                         //OUTPUT isadded false or true???
-                    }
-                    catch (ArgumentException exception)
-                    {
-                        //Message argument exception!! (Of Parse)
-                    }
+                        break;
+                    case "2":
+                        showAllLicenceNumbers();
+                        break;
+                    case "3":
+                        try
+                        {
+                            bool isChanged = changeStatusOfVechileInGarage();
+                            //OUTPUT isadded false or true???
+                        }
+                        catch (ArgumentException exception)
+                        {
+                            //Message argument exception!! (Of Parse)
+                        }
 
 
-                    break;
-                case "4":
-                    bool isInfalteAirToWheels=false;
-                    try{
-                        isInfalteAirToWheels = inflateAirInTheWheelsToMaximum();  
-                        //PRINT isAdded
-                    }
-                    catch (ValueOutOfRangeException exception)
-                    {
-                        //exception.Message; PRINT HerE??
-                    }
-                    //OUTPUT isadded false or true???
-                    break;
-                case "5":                   
-                    try
-                    {
-                        bool isAddedFuelToCar = false;
-                        isAddedFuelToCar=addGasolineFuelToCar();
-                        //message = "Sucsses To add";
-                    }
-                    catch (ArgumentException exception)
-                    {
-                        //message = exception.Message;??
-                    }
-                    catch (ValueOutOfRangeException exception)
-                    {
-                        //message = exception.Message;??
-                    }
-                    break;
-                case "6":
-                    try
-                    {
-                        chargeElectricCar();
-                        //message = "Sucsses To add";
-                    }
-                    catch (ArgumentException exception)
-                    {
-                        //message = exception.Message;??
-                    }
-                    catch (ValueOutOfRangeException exception)
-                    {
-                        ///message = exception.Message;??
-                    }
-                    break;
-                case "7":
-                    printAllCarDetails();
-                    break;
+                        break;
+                    case "4":
+                        bool isInfalteAirToWheels = false;
+                        try
+                        {
+                            isInfalteAirToWheels = inflateAirInTheWheelsToMaximum();
+                            //PRINT isAdded
+                        }
+                        catch (ValueOutOfRangeException exception)
+                        {
+                            //exception.Message; PRINT HerE??
+                        }
+                        //OUTPUT isadded false or true???
+                        break;
+                    case "5":
+                        try
+                        {
+                            bool isAddedFuelToCar = false;
+                            isAddedFuelToCar = addGasolineFuelToCar();
+                            //message = "Sucsses To add";
+                        }
+                        catch (ArgumentException exception)
+                        {
+                            //message = exception.Message;??
+                        }
+                        catch (ValueOutOfRangeException exception)
+                        {
+                            //message = exception.Message;??
+                        }
+                        break;
+                    case "6":
+                        try
+                        {
+                            chargeElectricCar();
+                            //message = "Sucsses To add";
+                        }
+                        catch (ArgumentException exception)
+                        {
+                            //message = exception.Message;??
+                        }
+                        catch (ValueOutOfRangeException exception)
+                        {
+                            ///message = exception.Message;??
+                        }
+                        break;
+                    case "7":
+                        printAllCarDetails();
+                        break;
+                }
+                Console.WriteLine("Please Enter 'Continue' if you want to continue or 'Exit' if you want to Exit");
+                continueProgram = (eContinueOrExit)Enum.Parse(typeof(eContinueOrExit), Console.ReadLine());
+                if (continueProgram.Equals(eContinueOrExit.Continue))
+                {
+                    Console.WriteLine("Please Choose Option From The Menu Again");
+                   chooseMenu = Console.ReadLine();
+                }
+
             }
-        }
+       }
+        
 
         private static bool addVechileToGarage()
         {

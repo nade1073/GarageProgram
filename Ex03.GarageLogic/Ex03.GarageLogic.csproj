@@ -42,6 +42,7 @@
   <ItemGroup>
     <Compile Include="Car.cs" />
     <Compile Include="eColor.cs" />
+    <Compile Include="eContinueOrExit.cs" />
     <Compile Include="eDoors.cs" />
     <Compile Include="ElectricEngine.cs" />
     <Compile Include="eLicenseType.cs" />

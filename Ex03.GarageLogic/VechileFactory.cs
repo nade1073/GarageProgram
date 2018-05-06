@@ -8,7 +8,7 @@ namespace Ex03.GarageLogic
             GarageVechile m_VechileToAddToGarage=new GarageVechile(i_VechileDetails.VechileDetails.OwnerName,i_VechileDetails.VechileDetails.PhoneOfOwner,eVechileStatus.Repair);
             bool isAddedToGarage = false;
             //** Need To CHECK Types!!
-            switch (i_VechileDetails.GetType().ToString())
+            switch (i_VechileDetails.GetType().Name.ToString())
             {
                 case nameof(CarDetails):
                     {
