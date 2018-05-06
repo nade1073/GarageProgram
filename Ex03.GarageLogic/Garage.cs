@@ -56,7 +56,7 @@ namespace Ex03.GarageLogic
             return isAddedToTheGarage;         
         }
 
-        public List<string> ShowVechilesInGarage(eVechileStatus? i_StatusToFilterVechiles)
+        public List<string> ShowVechilesLicenceNumbersInGarage(eVechileStatus? i_StatusToFilterVechiles)
         {
             List<string> vechilesLicenceNumbers = new List<string>();
             foreach (GarageVechile currentVechile in m_GarageVechiles)
@@ -74,93 +74,65 @@ namespace Ex03.GarageLogic
             return vechilesLicenceNumbers;
         }
 
-        public bool ChangeStatusOfVechile(string i_LicenceNumber, eVechileStatus i_NewStatus)
+        public bool ChangeStatusOfVechile(VechileDetails i_VechileDetails)
         {
             bool isChanged = false;
-            GarageVechile garageVechileInList = new GarageVechile();
-            garageVechileInList = getVechileByLicenceNumber(i_LicenceNumber);
+            GarageVechile garageVechileInList = getVechileByLicenceNumber(i_VechileDetails.LicenceNumber);
             if (garageVechileInList != null)
             {
+                garageVechileInList.CurrentVechileStatus = i_VechileDetails.VechileStatus;
                 isChanged = true;
-                garageVechileInList.CurrentVechileStatus = i_NewStatus;
             }
             return isChanged;
         }
 
-        public string InflateAirInTheWheels(string i_LicenceNumber)
+        public bool InflateAirInTheWheels(VechileDetails i_VechileDetails)
         {
-            string message=null;
+            bool isAdded = false;
             float currentAirPressure, maxAirPressure, missingAirPressure;
-            GarageVechile garageVechileInList = getVechileByLicenceNumber(i_LicenceNumber);
+            GarageVechile garageVechileInList = getVechileByLicenceNumber(i_VechileDetails.LicenceNumber);
             if (garageVechileInList != null)
             {
                 currentAirPressure = garageVechileInList.OwnerVechile.CurrentAirPressureOfWheels;
                 maxAirPressure = garageVechileInList.OwnerVechile.MaxAirPressureOfWheels;
                 missingAirPressure = maxAirPressure - currentAirPressure;
-                try
-                {
-                    garageVechileInList.OwnerVechile.WheelInflating(missingAirPressure);
-                }
-                catch (ValueOutOfRangeException exception)
-                {
-                    message = exception.Message;
-                }
+                garageVechileInList.OwnerVechile.WheelInflating(missingAirPressure);
+                isAdded = true;
+
             }
-            return message;
+            return isAdded;
         }
 
-        public string AddFuelToGasolineEngine(string i_LicenceNumber, eTypeOfFuel i_TypeOfFuelToAdd, float i_AmountOfFuelToAdd)
+        public bool AddFuelToGasolineEngine(VechileDetails i_VechileDetails)
         {
-            string message=null;
-            GarageVechile garageVechileInList = getVechileByLicenceNumber(i_LicenceNumber);
+            bool isAdded = false;
+            GarageVechile garageVechileInList = getVechileByLicenceNumber(i_VechileDetails.LicenceNumber);
             if (garageVechileInList != null)
             {
-                try
-                {
-                    garageVechileInList.OwnerVechile.EngineOfVechile.FillTheContainer(new GasolineEngine(i_TypeOfFuelToAdd, i_AmountOfFuelToAdd));
-                    message = "Sucsses To add";
-                }
-                catch(ArgumentException exception)
-                {
-                    message = exception.Message;
-                }
-                catch(ValueOutOfRangeException exception)
-                {
-                    message = exception.Message;
-                }
+                garageVechileInList.OwnerVechile.EngineOfVechile.FillTheContainer(new GasolineEngine(i_VechileDetails.TypeOfFuel, i_VechileDetails.Amount));
+                isAdded = true;
             }
-            return message;
+            return isAdded;
         }
 
-        public string ChargeElectricEngine(string i_LicenceNumber, float i_AmountOfBatteryToAdd)
+        public bool ChargeElectricEngine(VechileDetails i_VechileDetails)
         {
-            string message = null;
-            GarageVechile garageVechileInList = getVechileByLicenceNumber(i_LicenceNumber);
+            bool isAdded = false;
+            GarageVechile garageVechileInList = getVechileByLicenceNumber(i_VechileDetails.LicenceNumber);
             if (garageVechileInList != null)
             {
                 ElectricEngine electricToAdd = new ElectricEngine();
-                electricToAdd.Battery = i_AmountOfBatteryToAdd;
-                try
-                {
-                    garageVechileInList.OwnerVechile.EngineOfVechile.FillTheContainer(electricToAdd);
-                    message = "Sucsses To add";
-                }
-                catch(ArgumentException exception)
-                {
-                    message = exception.Message;
-                }
-                catch(ValueOutOfRangeException exception)
-                {
-                    message = exception.Message;
-                }
+                electricToAdd.Battery = i_VechileDetails.Amount;
+                garageVechileInList.OwnerVechile.EngineOfVechile.FillTheContainer(electricToAdd);
+                isAdded = true;
             }
-            return message;
+            return isAdded;
         }
 
-        public string GetCarDetails(string i_LicenceNumber)
+        public string GetCarDetails(VechileDetails i_VechileDetails)
         {
-            string message=null;
-            GarageVechile garageVechileInList = getVechileByLicenceNumber(i_LicenceNumber);
+            string message = "Car not found";
+            GarageVechile garageVechileInList = getVechileByLicenceNumber(i_VechileDetails.LicenceNumber);
             if (garageVechileInList != null)
             {
                 message = garageVechileInList.ToString();

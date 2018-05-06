@@ -5,9 +5,9 @@ namespace Ex03.GarageLogic
     {
         public static bool CreateAndInsertVechile(Details i_VechileDetails)
         {
-            GarageVechile m_VechileToAddToGarage=new GarageVechile(i_VechileDetails.OwnerName,i_VechileDetails.PhoneOfOwner,eVechileStatus.Repair);
+            GarageVechile m_VechileToAddToGarage=new GarageVechile(i_VechileDetails.VechileDetails.OwnerName,i_VechileDetails.VechileDetails.PhoneOfOwner,eVechileStatus.Repair);
             bool isAddedToGarage = false;
-            //** Need To CHECK!!
+            //** Need To CHECK Types!!
             switch (i_VechileDetails.GetType().ToString())
             {
                 case nameof(CarDetails):
@@ -15,7 +15,7 @@ namespace Ex03.GarageLogic
                         CarDetails car = i_VechileDetails as CarDetails;
                         if(car!=null)                         
                         {
-                            m_VechileToAddToGarage.OwnerVechile=new Car(car.ModelName, car.LicenceNumber, car.ColorOfCar, car.NumberOfDoors, car.TypeOfEngine);
+                            m_VechileToAddToGarage.OwnerVechile=new Car(car.VechileDetails.ModelName, car.VechileDetails.LicenceNumber, car.ColorOfCar, car.NumberOfDoors, car.VechileDetails.TypeOfEngine);
                         }
                         break;
                     }
@@ -25,7 +25,7 @@ namespace Ex03.GarageLogic
                         TruckDetails truck = i_VechileDetails as TruckDetails;
                         if (truck != null)
                         {
-                            m_VechileToAddToGarage.OwnerVechile = new Truck(truck.ModelName, truck.LicenceNumber, truck.IsTheTrunkCooled, truck.CargoCapacity);
+                            m_VechileToAddToGarage.OwnerVechile = new Truck(truck.VechileDetails.ModelName, truck.VechileDetails.LicenceNumber, truck.IsTheTrunkCooled, truck.CargoCapacity);
                         }
                         break;
                     }
@@ -35,7 +35,7 @@ namespace Ex03.GarageLogic
                         MotorCycleDetails motorCycle = i_VechileDetails as MotorCycleDetails;
                         if (motorCycle != null)
                         {
-                            m_VechileToAddToGarage.OwnerVechile = new MotorCycle(motorCycle.ModelName, motorCycle.LicenceNumber, motorCycle.LicsenseType, motorCycle.EngineCapacity, motorCycle.TypeOfEngine);
+                            m_VechileToAddToGarage.OwnerVechile = new MotorCycle(motorCycle.VechileDetails.ModelName, motorCycle.VechileDetails.LicenceNumber, motorCycle.LicsenseType, motorCycle.EngineCapacity, motorCycle.VechileDetails.TypeOfEngine);
                         }
                         break;
                     }

@@ -9,31 +9,77 @@ namespace Ex03.ConsoleUI
         static void Main(string[] args)
         {
             Console.WriteLine("Wellcom To The Garage Program designed by : Nadav Shalev & Ben Magriso\nMenu: -Choose one of the folowing options-");
-            Console.WriteLine("1.Add a new vechile to the garage.\n2Show all the licence numbers in the garage.");
+            Console.WriteLine("1.Add a new vechile to the garage.\n2.Show all the licence numbers in the garage.");
             Console.WriteLine("3.Change the status of the vechile\n4.Inflate air in the wheels to the maximum");
             Console.WriteLine("5.Add fuel to Gasoline Engine Car.\n6.Charge Electric car write");
             Console.WriteLine("7.Show all the cars details inside the gargae\nYour choise:");
             string chooseMenu = Console.ReadLine();
             //EnterALoop//
-            switch (chooseMenu) // need to add Parse to all inputs
+            //ArgumentException on all the switch???
+            switch (chooseMenu) 
             {
                 case "1":
-                    addVechileToGarage();
+                    bool isVechileAdded=addVechileToGarage();
+                    //OUTPUT isadded false or true???
                     break;
                 case "2":
                     showAllLicenceNumbers();
                     break;
                 case "3":
-                    ChangeStatusOfVechileInGarage(); //need to complete function
+                    try
+                    {
+                        bool isChanged = changeStatusOfVechileInGarage(); 
+                        //OUTPUT isadded false or true???
+                    }
+                    catch (ArgumentException exception)
+                    {
+                        //Message argument exception!! (Of Parse)
+                    }
+
+
                     break;
                 case "4":
-                    InflateAirInTheWheelsToMaximum();
+                    bool isInfalteAirToWheels=false;
+                    try{
+                        isInfalteAirToWheels = inflateAirInTheWheelsToMaximum();  
+                        //PRINT isAdded
+                    }
+                    catch (ValueOutOfRangeException exception)
+                    {
+                        //exception.Message; PRINT HerE??
+                    }
+                    //OUTPUT isadded false or true???
                     break;
-                case "5":
-                    addGasolineFuelToCar();
+                case "5":                   
+                    try
+                    {
+                        bool isAddedFuelToCar = false;
+                        isAddedFuelToCar=addGasolineFuelToCar();
+                        //message = "Sucsses To add";
+                    }
+                    catch (ArgumentException exception)
+                    {
+                        //message = exception.Message;??
+                    }
+                    catch (ValueOutOfRangeException exception)
+                    {
+                        //message = exception.Message;??
+                    }
                     break;
                 case "6":
-                    chargeElectricCar();
+                    try
+                    {
+                        chargeElectricCar();
+                        //message = "Sucsses To add";
+                    }
+                    catch (ArgumentException exception)
+                    {
+                        //message = exception.Message;??
+                    }
+                    catch (ValueOutOfRangeException exception)
+                    {
+                        ///message = exception.Message;??
+                    }
                     break;
                 case "7":
                     printAllCarDetails();
@@ -41,46 +87,57 @@ namespace Ex03.ConsoleUI
             }
         }
 
-        private static void addVechileToGarage()
+        private static bool addVechileToGarage()
         {
-            VechileDetails vechileDetails = new VechileDetails();
-            Console.WriteLine("Enter Owner name:");
-            vechileDetails.OwnerName = Console.ReadLine();
-            Console.WriteLine("Enter Phonenumber of Owner:");
-            vechileDetails.PhoneOfOwner = Console.ReadLine();
-            Console.WriteLine("Enter Model name:");
-            vechileDetails.ModelName = Console.ReadLine();
-            Console.WriteLine("Enter Licencenumber of the vechile:");
-            vechileDetails.LicenceNumber = Console.ReadLine();
-            Console.WriteLine("Enter the wheel manufacture");
-            vechileDetails.WheelManufacture = Console.ReadLine();
-            Console.WriteLine("Enter Current air pressure of the wheels:");
-            vechileDetails.CurrentAirPressure = Console.ReadLine();
-            Console.WriteLine("Choose one of the folowing options:");
-            Console.WriteLine("1.Car\n2.MotorCycle\n3.Truck\nYour choise:");
-            //Insert Loop 
-            string chooseMenu = Console.ReadLine();
-            switch(chooseMenu)
+            bool isAdded = false;
+            try
             {
-                case "1":
-                    {
-                        vechileDetails.TypeOfEngine = getTypeOfEngineFromClient();
-                        addNewCarToGarage(vechileDetails);
-                        break;
-                    }
-                case "2":
-                    {
-                        vechileDetails.TypeOfEngine = getTypeOfEngineFromClient();
-                        //MOTORCYCLE
-                        break;
-                    }
-                case "3":
-                    {
-                        vechileDetails.TypeOfEngine = eTypeOfEngine.Gasoline;
-                        //TRUCK
-                        break;
-                    }
+
+
+                VechileDetails vechileDetails = new VechileDetails();
+                Console.WriteLine("Enter Owner name:");
+                vechileDetails.OwnerName = Console.ReadLine();
+                Console.WriteLine("Enter Phonenumber of Owner:");
+                vechileDetails.PhoneOfOwner = Console.ReadLine();
+                Console.WriteLine("Enter Model name:");
+                vechileDetails.ModelName = Console.ReadLine();
+                vechileDetails.LicenceNumber = getLicsenceNumberFromClient();
+                Console.WriteLine("Enter the wheel manufacture");
+                vechileDetails.WheelManufacture = Console.ReadLine();
+                Console.WriteLine("Enter Current air pressure of the wheels:");
+                vechileDetails.CurrentAirPressure = Console.ReadLine();
+                Console.WriteLine("Choose one of the folowing options:");
+                Console.WriteLine("1.Car\n2.MotorCycle\n3.Truck\nYour choise:");
+                //Insert Loop 
+                string chooseMenu = Console.ReadLine();
+                switch (chooseMenu)
+                {
+                    case "1":
+                        {
+                            vechileDetails.TypeOfEngine = getTypeOfEngineFromClient();
+                            isAdded = addNewCarToGarage(vechileDetails);
+                            break;
+                        }
+                    case "2":
+                        {
+                            vechileDetails.TypeOfEngine = getTypeOfEngineFromClient();
+                            isAdded = addNewMotorcycleToGarage(vechileDetails);
+                            break;
+                        }
+                    case "3":
+                        {
+                            vechileDetails.TypeOfEngine = eTypeOfEngine.Gasoline;
+                            isAdded = addNewTruckToGarage(vechileDetails);
+                            break;
+                        }
+                }
+
             }
+            catch(ArgumentException exception)
+            {
+                //Message argument exception!! (Of Parse)
+            }
+            return isAdded;
             
         }
         private static eTypeOfEngine getTypeOfEngineFromClient()
@@ -106,57 +163,44 @@ namespace Ex03.ConsoleUI
             return typeOfEngine;
         }
 
-        private static void addNewCarToGarage(VechileDetails i_VechileDetails)
+        private static bool addNewCarToGarage(VechileDetails i_VechileDetails)
         {
             CarDetails carDetails = new CarDetails();
             carDetails.VechileDetails = i_VechileDetails;
             Console.WriteLine("Please Enter Number Of Doors: (2,3,4,5)");
-            //Try Prase??
             carDetails.NumberOfDoors = (eDoors)Enum.Parse(typeof(eDoors), Console.ReadLine());
             Console.WriteLine("Please Enter Color Of Car: (Blue,White,Black,Gray)");
-            //Try Prase??
             carDetails.ColorOfCar = (eColor)Enum.Parse(typeof(eColor), Console.ReadLine());
-            VechileFactory.CreateAndInsertVechile(carDetails);
+            return VechileFactory.CreateAndInsertVechile(carDetails);
 
         }       
 
-        private static void addNewMotorcycleToGarage(VechileDetails i_VechileDetails)
+        private static bool addNewMotorcycleToGarage(VechileDetails i_VechileDetails)
         {
             MotorCycleDetails motorcycleDetails = new MotorCycleDetails();
             motorcycleDetails.VechileDetails = i_VechileDetails;
             Console.WriteLine("Please Enter Engine Capacity:");
-            //Try Prase??
             motorcycleDetails.EngineCapacity = int.Parse(Console.ReadLine());
             Console.WriteLine("Please Licsene of Motorcycle: (A,A1,B1,B2)");
-            //Try Prase??
             motorcycleDetails.LicsenseType = (eLicenseType)Enum.Parse(typeof(eLicenseType), Console.ReadLine());
-            VechileFactory.CreateAndInsertVechile(motorcycleDetails);
+            return VechileFactory.CreateAndInsertVechile(motorcycleDetails);
 
         } 
 
-        private static void createNewMotorcycle(string i_fuelOrElectricAmount, string i_WheelManufacture, string i_CurrentAirPressure, string i_ModelName, string i_LicenceNumber)
+        private static bool addNewTruckToGarage(VechileDetails i_VechileDetails)
         {
-            string engineCapacity, motorcylcleLicence;
-            Console.WriteLine("Enter the engine capacity");
-            engineCapacity = Console.ReadLine();
-            Console.WriteLine("Enter the motorcycle licence");
-            motorcylcleLicence = Console.ReadLine();
-            factoryvechile.addMotorcycle(i_fuelOrElectricAmount, i_WheelManufacture, i_CurrentAirPressure, i_ModelName, i_LicenceNumber, engineCapacity, motorcylcleLicence);
-        }
-        private static void createNewTruck(string i_fuelOrElectricAmount, string i_WheelManufacture, string i_CurrentAirPressure, string i_ModelName, string i_LicenceNumber)
-        {
-            string truckCharge, isCooledInput;
-            bool isCooled = false;
-            Console.WriteLine("Enter the truck charge");
-            truckCharge = Console.ReadLine();
-            Console.WriteLine("Enter if is cooled '1'");
-            isCooledInput = Console.ReadLine();
-            if (isCooledInput == "1")
-            {
-                isCooled = true;
-            }
-            factoryvechile.addTruck(i_fuelOrElectricAmount, i_WheelManufacture, i_CurrentAirPressure, i_ModelName, i_LicenceNumber, truckCharge, isCooled);
-        }
+            TruckDetails truckDetails = new TruckDetails();
+            truckDetails.VechileDetails = i_VechileDetails;
+            Console.WriteLine("Please Enter The Cargo Capacity:");
+            //Try Prase??
+            truckDetails.CargoCapacity = float.Parse(Console.ReadLine());
+            Console.WriteLine("Please eneter if the Trunk of the truck is cooled: (True,False)");
+            //Try Prase??
+            truckDetails.IsTheTrunkCooled = Boolean.Parse(Console.ReadLine());
+            return VechileFactory.CreateAndInsertVechile(truckDetails);
+
+        } 
+
         private static void showAllLicenceNumbers()
         {
             List<string> vechilesLicenceNumbers = new List<string>();
@@ -178,62 +222,68 @@ namespace Ex03.ConsoleUI
                 case "3":
                     break;
             }
-            vechilesLicenceNumbers = Garage.showVechilesInGarage(statusToFilterVechiles);
+            vechilesLicenceNumbers = Garage.Instance.ShowVechilesLicenceNumbersInGarage(statusToFilterVechiles);
             printList(vechilesLicenceNumbers);
         }
+
         private static void printList(List<string> i_ListToPrint)
         {
-            foreach (string item in i_ListToPrint)
+            int i = 0;
+            foreach (string currentItem in i_ListToPrint)
             {
-                Console.WriteLine("{0}\n",item);
+                i++;
+                Console.WriteLine(String.Format("{0}.{1}",i,currentItem));
             }
         }
-        private static void ChangeStatusOfVechileInGarage()
-        {
-            string licenceNumber,outputStatus;
-            eVechileStatus statusToFilterVechiles;
-            Console.WriteLine("Enter the licence number of the vechile");
-            licenceNumber = Console.ReadLine();
-            Console.WriteLine("Enter the status");
-            outputStatus = Console.ReadLine();
 
-            Garage.ChangeStatusOfVechile(licenceNumber, statusToFilterVechiles);
+        private static bool changeStatusOfVechileInGarage()
+        {    
+            VechileDetails vechileDetails = new VechileDetails();
+            vechileDetails.LicenceNumber = getLicsenceNumberFromClient(); 
+            Console.WriteLine("Please Enter The status of the car: (Repair,Fixed,Paid,Gray)");
+            vechileDetails.VechileStatus = (eVechileStatus)Enum.Parse(typeof(eVechileStatus), Console.ReadLine());
+            return Garage.Instance.ChangeStatusOfVechile(vechileDetails);
         }
-        private static void InflateAirInTheWheelsToMaximum()
+                                  
+        private static bool inflateAirInTheWheelsToMaximum()
         {
-            string licenceNumber, outputStatus;
-            eVechileStatus statusToFilterVechiles;
-            Console.WriteLine("Enter the licence number of the vechile");
-            licenceNumber = Console.ReadLine();
-            Garage.InflateAirInTheWheels(licenceNumber, statusToFilterVechiles);
+            VechileDetails vechileDetails = new VechileDetails();
+            vechileDetails.LicenceNumber = getLicsenceNumberFromClient();  
+            return Garage.Instance.InflateAirInTheWheels(vechileDetails);  
         }
-        private static void addGasolineFuelToCar()
+                                  
+        private static bool addGasolineFuelToCar()
         {
-            eTypeOfFuel typeOfFuelToAdd;
-            string amountOfFuelToAdd, licenceNumber;
-            Console.WriteLine("Enter the licence number of the vechile");
-            licenceNumber = Console.ReadLine();
-            Console.WriteLine("Please Enter the type of fuel to add\n");
-            typeOfFuelToAdd = Console.ReadLine();
+            VechileDetails vechileDetails = new VechileDetails();
+            vechileDetails.LicenceNumber = getLicsenceNumberFromClient();
+            Console.WriteLine("Please Enter the Type Of Fuel : (Ocatn95,Ocatn96,Ocatn98,Soler2)");
+            vechileDetails.TypeOfFuel = (eTypeOfFuel)Enum.Parse(typeof(eTypeOfFuel), Console.ReadLine());
+            //Try Prase??
             Console.WriteLine("Please Enter the amount of fuel to add\n");
-            amountOfFuelToAdd = (Console.ReadLine());
-            Garage.AddFuelToGasolineEngine(licenceNumber, typeOfFuelToAdd, amountOfFuelToAdd);
+            //Try Prase??
+            vechileDetails.Amount = float.Parse(Console.ReadLine());
+            return Garage.Instance.AddFuelToGasolineEngine(vechileDetails);
+      
         }
-        private static void chargeElectricCar()
+        private static bool chargeElectricCar()
         {
-            string amountOfBattery, licenceNumber;
-            Console.WriteLine("Enter the licence number of the vechile");
-            licenceNumber = Console.ReadLine();
+            VechileDetails vechileDetails = new VechileDetails();
+            vechileDetails.LicenceNumber = getLicsenceNumberFromClient();  
             Console.WriteLine("Please Enter the amount of battery to add\n");
-            amountOfBattery = Console.ReadLine();
-            Garage.ChargeElectricEngine(licenceNumber, amountOfBattery);
+            vechileDetails.Amount = float.Parse(Console.ReadLine());
+            return Garage.Instance.ChargeElectricEngine(vechileDetails);
         }
         private static void printAllCarDetails()
+        { 
+            VechileDetails vechileDetails = new VechileDetails();
+            vechileDetails.LicenceNumber = getLicsenceNumberFromClient();
+            String message = Garage.Instance.GetCarDetails(vechileDetails);
+            Console.WriteLine(message);
+        }
+        private static String getLicsenceNumberFromClient()
         {
-            string  licenceNumber;
             Console.WriteLine("Enter the licence number of the vechile");
-            licenceNumber = Console.ReadLine();
-            Garage.GetCarDetails(licenceNumber);
+            return Console.ReadLine();            
         }
     }
 }

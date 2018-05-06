@@ -16,7 +16,7 @@ namespace Ex03.GarageLogic
         {
             ModelName = i_ModelName;
             LicenseNumber = i_LicenseNumber;
-            Wheels = new List<Wheel>(i_NumberOfWheels);
+            m_Wheels = new List<Wheel>(i_NumberOfWheels);
             r_NumberOfWheels = i_NumberOfWheels;
             for(int i=0;i<i_NumberOfWheels;i++)
             {
@@ -91,10 +91,7 @@ namespace Ex03.GarageLogic
                 return m_Wheels;
             }
 
-            set
-            {
-                m_Wheels = value;
-            }
+
         }
 
         public Engine EngineOfVechile

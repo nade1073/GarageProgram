@@ -10,7 +10,34 @@ namespace Ex03.GarageLogic
         private string m_LicenceNumber;
         private string m_OwnerName;
         private string m_PhoneOfOwner;
+        private eVechileStatus m_VechileStatus;
+        private eTypeOfFuel m_TypeOfFuel;
+        private float m_Amount;
 
+        public float Amount
+        {
+            get
+            {
+                return m_Amount;
+            }
+            set
+            {
+                m_Amount = value;
+            }
+        }
+
+        public eTypeOfFuel TypeOfFuel
+        {
+            get
+            {
+                return m_TypeOfFuel;
+            }
+            set
+            {
+                m_TypeOfFuel = value;
+            }
+            
+        }
         public string OwnerName
         {
             get
@@ -20,6 +47,18 @@ namespace Ex03.GarageLogic
             set
             {
                 m_OwnerName = value;
+            }
+        }
+
+        public eVechileStatus VechileStatus
+        {
+            get
+            {
+                return m_VechileStatus;
+            }
+            set
+            {
+                m_VechileStatus = value;
             }
         }
 
