@@ -126,6 +126,7 @@ namespace Ex03.ConsoleUI
                 {
                     case "1":
                         {
+                            vechileDetails.TypeOfCar = eTypeOfCar.Car;
                             vechileDetails.TypeOfEngine = getTypeOfEngineFromClient();
                             vechileDetails.Amount = getAmountFromClient();
                             isAdded = addNewCarToGarage(vechileDetails);
@@ -133,6 +134,7 @@ namespace Ex03.ConsoleUI
                         }
                     case "2":
                         {
+                            vechileDetails.TypeOfCar = eTypeOfCar.Motorcycle;
                             vechileDetails.TypeOfEngine = getTypeOfEngineFromClient();
                             vechileDetails.Amount = getAmountFromClient();
                             isAdded = addNewMotorcycleToGarage(vechileDetails);
@@ -140,6 +142,7 @@ namespace Ex03.ConsoleUI
                         }
                     case "3":
                         {
+                            vechileDetails.TypeOfCar = eTypeOfCar.Truck;
                             vechileDetails.TypeOfEngine = eTypeOfEngine.Gasoline;
                             isAdded = addNewTruckToGarage(vechileDetails);
                             break;

@@ -13,6 +13,7 @@ namespace Ex03.GarageLogic
         private eVechileStatus m_VechileStatus;
         private eTypeOfFuel m_TypeOfFuel;
         private float m_Amount;
+        private eTypeOfCar m_TypeOfCar; 
 
         public float Amount
         {
@@ -22,6 +23,63 @@ namespace Ex03.GarageLogic
             }
             set
             {
+                switch(TypeOfCar)
+                {
+                    case eTypeOfCar.Car:
+                        {
+                            switch(TypeOfEngine)
+                            {
+                                case eTypeOfEngine.Electric:
+                                    {
+                                        if(value > Car.k_MaxOfContainerOfElectricEngine)
+                                        {
+                                            throw new ValueOutOfRangeException(Car.k_MaxOfContainerOfElectricEngine,0, eTypeOfEngine.Electric.ToString());
+                                        }
+                                        break;
+                                    }
+                                case eTypeOfEngine.Gasoline:
+                                    {
+                                        if (value > Car.k_MaxOfContainerOfElectricEngine)
+                                        {
+                                            throw new ValueOutOfRangeException(Car.k_MaxOfContainerOfGasolineEngine, 0, eTypeOfEngine.Gasoline.ToString());
+                                        }
+                                        break;
+                                    }
+                            }
+                            break;
+                        }
+                    case eTypeOfCar.Truck:
+                        {
+                                if (value > Truck.k_FuelContainerOfTruck)
+                                  {
+                                       throw new ValueOutOfRangeException(Truck.k_FuelContainerOfTruck, 0, eTypeOfEngine.Gasoline.ToString());
+                                   }                              
+                            break;
+                        }
+                    case eTypeOfCar.Motorcycle:
+                        {
+                            switch (TypeOfEngine)
+                            {
+                                case eTypeOfEngine.Electric:
+                                    {
+                                        if (value > MotorCycle.k_MaxCapacityOfElectricEngine)
+                                        {
+                                            throw new ValueOutOfRangeException(MotorCycle.k_MaxCapacityOfElectricEngine, 0, eTypeOfEngine.Electric.ToString());
+                                        }
+                                        break;
+                                    }
+                                case eTypeOfEngine.Gasoline:
+                                    {
+                                        if (value > MotorCycle.k_MaxCapacityOfGasolineEngine)
+                                        {
+                                            throw new ValueOutOfRangeException(MotorCycle.k_MaxCapacityOfGasolineEngine, 0, eTypeOfEngine.Gasoline.ToString());
+                                        }
+                                        break;
+                                    }
+                            }
+                            break;
+                        }
+                }
                 m_Amount = value;
             }
         }
@@ -133,6 +191,18 @@ namespace Ex03.GarageLogic
                 m_LicenceNumber = value;
             }
         }
-     
+
+        public eTypeOfCar TypeOfCar
+        {
+            get
+            {
+                return m_TypeOfCar;
+            }
+
+            set
+            {
+                m_TypeOfCar = value;
+            }
+        }
     }
 }

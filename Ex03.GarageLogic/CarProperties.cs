@@ -39,6 +39,10 @@ namespace Ex03.GarageLogic
 
             set
             {
+                if((int)NumberOfDoors<2 || (int)NumberOfDoors>5)
+                {
+                    throw new ArgumentException("Cannot set" + (int)NumberOfDoors + " doors");
+                }
                 m_NumberOfDoors = value;
             }
         }

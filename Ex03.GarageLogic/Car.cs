@@ -8,8 +8,8 @@ namespace Ex03.GarageLogic
         private CarProperties m_CarProperties;
         private const int k_NumberOfWheelsOfCar= 4;
         private const int k_MaxAirPressureOfWheelOfCar = 32;
-        private const float k_MaxOfContainerOfElectricEngine = 3.2f;
-        private const float k_MaxOfContainerOfGasolineEngine = 45;
+        public const float k_MaxOfContainerOfElectricEngine = 3.2f;
+        public const float k_MaxOfContainerOfGasolineEngine = 45;
 
         public Car(string i_ModelName, string i_LicenseNumber,eColor i_ColorOfTheCar,eDoors i_NumberOfDoors,eTypeOfEngine i_TypeOfEngine,float i_AmountOfContainer) : 
             base(i_ModelName, i_LicenseNumber, k_NumberOfWheelsOfCar, k_MaxAirPressureOfWheelOfCar)

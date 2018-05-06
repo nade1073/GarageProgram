@@ -8,7 +8,7 @@ namespace Ex03.GarageLogic
         private TruckProperties m_TruckProperties;
         private const int k_NumberOfWheelsOfTruck = 12;
         private const int k_MaxAirPressureOfWheelOfTruck = 28;
-        private const int k_FuelContainerOfTruck = 115;
+        public const int k_FuelContainerOfTruck = 115;
 
         public Truck(string i_ModelName, string i_LicenseNumber, bool i_IsTheTrunkCooled, float i_CargoCapacity,float i_AmountOfContainer) : 
             base(i_ModelName, i_LicenseNumber, k_NumberOfWheelsOfTruck, k_MaxAirPressureOfWheelOfTruck)
